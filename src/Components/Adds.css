@@ -1,0 +1,9 @@
+.adds .heading,
+.losts .heading{
+    background-color: #38a1f1;
+    width: fit-content;
+    margin: 50px auto;
+    padding:30px;
+    border-radius: 50%;
+    color: #fff;
+}

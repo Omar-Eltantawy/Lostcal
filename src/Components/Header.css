@@ -1,0 +1,75 @@
+.header{
+    background-color: var(--main-color);
+}
+.header .container{
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 60px;
+}
+.header .container .logo{
+    color: var(--text-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+.header .container .logo p{
+    font-size: 0.6rem;
+    margin-left: 0.7rem;
+}
+@media (max-width:767px) {
+    .header .container .logo{
+        flex-direction: column;
+    }
+    .header .container{
+        flex-direction: column;
+        margin-top: 0;
+    }
+    
+}
+.header .container a{
+    color: var(--text-gray);
+}
+.header .container ul{
+    display: flex;
+    align-items: center;
+}
+.header .container ul li:not(:last-child){
+    padding:20px;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+@media (max-width:767px){
+    .header .container ul li{
+        /* font-size: 0.6rem; */
+        padding: 20px 10px;
+    }
+}
+.header .container ul li a{
+    padding: 10px 15px;
+    border-radius: 0.8rem;
+    transition: 0.5s;
+}
+.header .container ul li:not(:last-child):hover a{
+    border: 1px solid var(--text-gray);
+    padding: 10px 20px;
+    font-weight: bold;
+}
+.header .container ul li .btn{
+    background-color: var(--bg-btn);
+    color: var(--main-color);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0.8rem;
+    transition: 0.5s;
+    font-size: 0.8rem;
+}
+.header .container ul li .btn:hover{
+    color: var(--bg-btn);
+    background-color: var(--main-color);
+    border: 1px solid var(--bg-btn);
+    font-weight: bold;
+    transition: 0.5s;
+}
