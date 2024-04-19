@@ -3,12 +3,16 @@ import "./LostCard.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteAdds } from '../redux/addSlice';
 import { deleteLost } from '../redux/lostSlice';
+import Modal from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import UpdateAddPopup from './UpdateAddPopup';
+import UpdateMyLostPopup from './UpdateMyLostPopup';
 const LostCard = ({lost,add,search,name,age,address,phoneNumber,images,email,img,id}) => {
-  // const images=[
-  //   "../../src/assets/images/child.png",
-  //   "../../src/assets/images/child2.png",
-  //   "../../src/assets/images/child3.png",
-  // ];
+  const [open, setOpen] = useState(false);
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+  const myLostPatchLoading=useSelector((state)=>state.patch.loading);
+
   const token=useSelector((state)=>state.user.token);
   const addLoading=useSelector((state)=>state.add.loading);
   const lostLoading=useSelector((state)=>state.lost.loading);
@@ -72,18 +76,33 @@ const LostCard = ({lost,add,search,name,age,address,phoneNumber,images,email,img
                 {
                   (add) ?(
                     <div>
-                      <span>
-                        <i className="fa-solid fa-pen"></i>
+                      <span style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                        <i className="fa-solid fa-pen" onClick={onOpenModal}></i>
                       </span>
                       <button onClick={deleteTheAdd}>found</button>
+                      <Modal classNames={{modal:'customModal',
+                        overlayAnimationIn: 'customEnterOverlayAnimation',
+                        overlayAnimationOut: 'customLeaveOverlayAnimation',
+                        modalAnimationIn: 'customEnterModalAnimation',
+                        modalAnimationOut: 'customLeaveModalAnimation',}} open={open} onClose={onCloseModal} center>
+                        <UpdateAddPopup name={name} address={address} phoneNumber={phoneNumber} img={img} email={email} id={id} />
+                      </Modal>
                     </div>
                   ):(lost)?(
                     <div>
-                      <span>
-                        <i className="fa-solid fa-pen"></i>
+                      <span style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                        <i className="fa-solid fa-pen" onClick={onOpenModal}></i>
                       </span>
                       <button onClick={deleteTheLost}>found</button>
+                      <Modal classNames={{modal:'customModal',
+                        overlayAnimationIn: 'customEnterOverlayAnimation',
+                        overlayAnimationOut: 'customLeaveOverlayAnimation',
+                        modalAnimationIn: 'customEnterModalAnimation',
+                        modalAnimationOut: 'customLeaveModalAnimation',}} open={open} onClose={onCloseModal} center>
+                        <UpdateMyLostPopup name={name} age={age} address={address} phoneNumber={phoneNumber} images={images} email={email} id={id} />
+                      </Modal>
                     </div>
+                    
                   ):
                   (
                     <div>

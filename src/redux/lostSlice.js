@@ -147,6 +147,7 @@ const lostSlice=createSlice({
             state.success=false;
             state.error=action.error.message;
         })
+        
     }
 });
 

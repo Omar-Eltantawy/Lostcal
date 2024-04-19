@@ -52,7 +52,7 @@ const Login = () => {
                         <img src='/src/assets/images/password.png'/>
                         <input type='password' placeholder='Enter your password' name='password' value={password} onChange={(e)=>setPassword(e.target.value)} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"  />
                     </div>
-                    <Link to="/" className='forget' style={{marginBottom:"1rem"}}>forgot password ?</Link>
+                    <Link to="/forgot-password" className='forget' style={{marginBottom:"1rem"}}>forgot password ?</Link>
                     <button type='submit' style={{marginBottom:"1rem"}} disabled={loading === true}>Login</button>
                     <Link to="/signup" className='forget'>Not registered ? Create Account</Link>
                 </form>

@@ -51,6 +51,10 @@ const Signup = () => {
                         <img src='/src/assets/images/password.png'/>
                         <input type='password' required placeholder='Enter your password' name='password' value={password} onChange={(e)=>setPassword(e.target.value)} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
                     </div>
+                    <div className='input-container'>
+                        <img src='/src/assets/images/password.png'/>
+                        <input type='password' required placeholder='Enter your password' name='confirm password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+                    </div>
                     <button type='submit' disabled={loading === true}>Sign Up</button>
                     <Link to="/login" className='have-account'>Already Have Account?</Link>
                 </form>

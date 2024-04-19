@@ -9,6 +9,8 @@ import Search from './Components/Search'
 import User from './Components/user'
 import Adds from './Components/Adds'
 import Losts from './Components/Losts'
+import ForgotPassword from './Components/ForgotPassword'
+import ChangePassword from './Components/ChangePassword'
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
           <Route path='/user' element={<User/>}/>
           <Route path='/adds' element={<Adds/>}/>
           <Route path='/losts' element={<Losts/>}/>
+          <Route path='/forgot-password' element={<ForgotPassword/>}/>
+          <Route path='/change-password' element={<ChangePassword/>}/>
         </Routes>
       </div>
       

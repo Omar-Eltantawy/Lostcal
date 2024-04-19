@@ -16,9 +16,9 @@ const Search = () => {
         dispatch(searchForLost({nameToSearch,token}));
     },[nameToSearch,token,dispatch])
     return (
-        <React.Fragment>
+        <div style={{overflow:"hidden"}}>
             <div className='search'>
-            <NewHeader active="search"/>
+                <NewHeader active="search"/>
                 <div className='container'>
                     <div className='left-img'>
                         <img src='/src/assets/images/paint-splat-paint-splashes-design-use-abstract-vector-illus-illustration(l).png' alt='left-img'/>
@@ -43,13 +43,15 @@ const Search = () => {
                     </div>
                 </div>
             </div>
+            <div className='card'>
             {
                 lostPeople.map((lostPerson,i)=>(
                     <LostCard key={i} search name={lostPerson.name} age={lostPerson.age} address={lostPerson.address} phoneNumber={lostPerson.phoneNumber} images={lostPerson.images}  />
                 ))
             }
+            </div>
             
-        </React.Fragment>
+        </div>
     )
 }
 

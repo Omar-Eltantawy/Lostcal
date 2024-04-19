@@ -1,9 +1,36 @@
+.losts,
+.adds{
+    overflow: hidden;
+        background-color: #D9D9D9;
+
+}
 .adds .heading,
 .losts .heading{
-    background-color: #38a1f1;
+    /* background-color: #38a1f1; */
+    background-color: var(--main-color);
     width: fit-content;
+    font-size: 1rem;
+    text-align: center;
     margin: 50px auto;
     padding:30px;
     border-radius: 50%;
     color: #fff;
+}
+@media (max-width:600px) {
+    .adds .heading,
+    .losts .heading{
+        font-size: 0.6rem;
+    }
+}
+.loader-overlay{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width of viewport */
+    height: 100vh; /* Full height of viewport */
+    background-color: #2A2A40; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999; 
 }

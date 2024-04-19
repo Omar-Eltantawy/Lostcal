@@ -11,9 +11,11 @@ const NewHeader = ({active}) => {
     const [activeLink,setActiveLink]=useState(active);
     const navRef=useRef();
     const showNav=()=>{
-        if(navRef.current.style.display === "none"){
+        const computedStyle = window.getComputedStyle(navRef.current);
+        const currentDisplay = computedStyle.getPropertyValue('display');
+        if(currentDisplay === "none"){
             navRef.current.style.display="flex";
-        }else if(navRef.current.style.display="flex"){
+        }else if(currentDisplay ==="flex"){
             navRef.current.style.display="none";
         }
     }

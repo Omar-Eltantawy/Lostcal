@@ -1,12 +1,13 @@
 .find-lost {
-  background-color: #5f5f6f;
+  background-color: #D9D9D9;
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
   position: relative;
-  padding: 20px;
+  padding: 50px;
 }
 .loader-overlay{
   position: fixed; 
@@ -20,20 +21,14 @@
   align-items: center; 
   z-index: 9999; 
 }
-@media (min-width: 1280px) {
-  .find-lost {
-    height: 100vh;
-    overflow-y: hidden;
-  }
-}
 
 .test {
   z-index: 2;
-  background-color: #D9D9D9;
   padding: 5px 20px;
   border-radius: 26px;
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
 }
 
 .find-lost-container {
@@ -42,7 +37,7 @@
   height: 50%;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .find-lost-container {
     justify-content: space-between;
     flex-direction: row;
@@ -76,7 +71,7 @@
   /* justify-content: space-around; */
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
   .find-lost-center {
     display: flex;
     flex-direction: column;
@@ -172,7 +167,13 @@
   padding: 4px;
   resize: none;
 }
+@media (max-width:400px) {
+  .find-lost-row input{
+    width: 100%;
+    font-size: 0.6rem;
+  }
 
+}
 .find-lost-row-last textarea::placeholder {
   color: black;
 }
@@ -223,6 +224,11 @@
   cursor: pointer;
   overflow: hidden;
 }
+@media (max-width:400px) {
+  .find-lost-right-img {
+    width: 100%;
+  }
+}
 .find-lost-right-img img{
   max-width: 100%;
   max-height: 100%;
@@ -242,71 +248,15 @@
   cursor: pointer;
   transition: 0.5s;
 }
+@media (max-width:400px) {
+  .find-lost-submit{
+    font-size: 12px;
+    width: 100%;
+  }
+}
 .find-lost-submit:hover{
   color: #1c1c36;
   background-color: #bed9e1;
   font-weight: bold;
   border: #1c1c36 1px solid;
-}
-.background-rectangle1 {
-  background-color: #2a2a40;
-  width: 1000px;
-  height: 200px;
-  position: absolute;
-  z-index: 1;
-  left: -50px;
-  transform: rotate(-10deg);
-}
-
-.background-rectangle2 {
-  background-color: #2a2a40;
-  width: 1000px;
-  height: 200px;
-  position: absolute;
-  z-index: 1;
-  right: -50px;
-  transform: rotate(10deg);
-}
-
-.background-line1{
-  position: absolute;
-  z-index: 1;
-  background-color: black;
-  width: 300px;
-  height: 1px;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%) rotate(-30deg);
-}
-
-.background-line2{
-  position: absolute;
-  z-index: 1;
-  background-color: black;
-  width: 300px;
-  height: 1px;
-  left: 45%;
-  bottom: 20px;
-  transform: translateX(-50%) rotate(-30deg);
-}
-
-.background-line3{
-  position: absolute;
-  z-index: 1;
-  background-color: black;
-  width: 300px;
-  height: 1px;
-  left: 55%;
-  bottom: 20px;
-  transform: translateX(-50%) rotate(-30deg);
-}
-
-@media (max-width: 1024px) {
-  .background-line1,
-  .background-line2,
-  .background-line3,
-  .background-rectangle1,
-  .background-rectangle2{
-    display: none;
-  }
 }

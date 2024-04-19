@@ -2,6 +2,7 @@
   width: 100%;
   /* background: linear-gradient(0deg, rgba(3, 2, 45, 0.4), rgba(3, 2, 45, 0.4)), linear-gradient(0deg, #9c9c9c, #9c9c9c); */
   background-color: var(--main-color);
+  margin-top: 0;
 }
 .landing .container {
   height: 100vh;
@@ -9,14 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 50px;
+  /* padding-top: 20px; */
   padding-bottom: 10px;
   border-bottom-left-radius: 70px;
-}
-@media (max-width: 767px) {
-  .container {
-    margin-top: 80px;
-  }
 }
 .landing .container .img-left {
   width: 30%;

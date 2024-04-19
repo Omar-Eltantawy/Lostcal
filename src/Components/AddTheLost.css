@@ -8,7 +8,7 @@
     background-image: url("../assets/images/Rectangle\ 36.png");
     background-size: auto;
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 .loader-overlay{
     position: fixed; 
@@ -22,82 +22,33 @@
     align-items: center; 
     z-index: 9999; 
 }
-.background-rectangle1 {
-    background-color: #2a2a40;
-    width: 1000px;
-    height: 200px;
-    position: absolute;
-    z-index: 1;
-    left: -50px;
-    transform: rotate(15deg);
-}
-
-.background-rectangle2 {
-    background-color: #2a2a40;
-    width: 1000px;
-    height: 200px;
-    position: absolute;
-    z-index: 1;
-    right: -50px;
-    transform: rotate(-15deg);
-}
-.background-line1{
-    position: absolute;
-    z-index: 1;
-    background-color: black;
-    width: 140px;
-    height: 1px;
-    left: 50%;
-    bottom: 35px;
-    transform: translatex(-50%) rotate(30deg);
-}
-
-.background-line2{
-    position: absolute;
-    z-index: 1;
-    background-color: black;
-    width: 140px;
-    height: 1px;
-    left: 45%;
-    bottom: 35px;
-    transform: translatex(-50%) rotate(30deg);
-}
-
-.background-line3{
-    position: absolute;
-    z-index: 1;
-    background-color: black;
-    width: 140px;
-    height: 1px;
-    left: 55%;
-    bottom: 35px;
-    transform: translateX(-50%) rotate(30deg);
-}
-
 .add-lost .container{
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    height: 100%;
     background-color: #D9D9D9;
-    border-radius: 2rem;
+    /* border-radius: 2rem; */
     z-index: 5;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(50%,1fr));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0;
-    /* overflow: hidden; */
-}
-@media (min-width:991px) {
-    .add-lost .container{
-        overflow: hidden;
-    }
+    overflow: hidden;
 }
 @media (max-width:991px) {
     .add-lost .container{
+        overflow: auto;
         display: flex;
         flex-direction: column;
     }
 }
 .add-lost .container .left{
-    width: 100%;
+    height: 100%;
+    width: 35%;
+    padding: 20px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
 }
 @media (min-width:992px) {
     .add-lost .container .left{
@@ -108,7 +59,9 @@
 .add-lost .container .left h1{
     margin-top: 20px;
     color: #000000;
-    font-size: 3rem;
+    font-size: 2rem;
+    height: 30px;
+    text-align: center;
     font-weight: normal;
     word-spacing: 15px;
 }
@@ -116,6 +69,7 @@
     margin: 20px auto 0;
     background-color: #9B9B9B99;
     width: 280px;
+    height: 220px;
     padding: 12px 40px;
     display: flex;
     align-items: center;
@@ -123,10 +77,11 @@
     border-radius: 2rem;
     box-shadow: 4px 4px 10px 0px rgba(42, 42, 64, 1), -4px -4px 10px 0px rgba(21, 21, 40, 1);
     cursor: pointer;
-    margin: 20px auto;
+    margin: 30px auto;
 }
 .add-lost .container .left .add-img img{
     max-width: 100%;
+    height: 200px;
 }
 @media (max-width:1199px) {
     .add-lost .container .left h1{
@@ -162,16 +117,43 @@
         width: 100%;
     }
 }
+@media (max-width:450px) {
+    .add-lost .container .left .add-img{
+        width: 100%;
+    }
+    .add-lost .container .left h1{
+        font-size: 1rem;
+    }
+}
+.add-lost .container .left .left-input-container{
+    padding: 30px;
+}
+@media (max-width:767px) {
+    .add-lost .container .left .left-input-container{
+        padding: 0;
+    }
+}
 .add-lost .container .left .left-input-container .input-container{
     /* margin: auto; */
     margin-top: 10px;
-    width: 70%;
+    width: 100%;
     height:70px;
     margin-bottom: 2rem;
     display: flex;
     background-color: #68D9FB40;
     border-radius: 2rem;
     padding: 10px 25px
+}
+.add-lost .container .left .left-input-container .input-container:last-child{
+    height: 120px;
+}
+@media (max-width:450px) {
+    .add-lost .container .left .left-input-container{
+        padding: 0;
+    }
+    .add-lost .container .left .left-input-container .input-container:last-child{
+        height: 150px;
+    }
 }
 .add-lost .container .left .left-input-container .input-container img{
     width: 50px;
@@ -192,7 +174,7 @@
     border: none;
     outline: none;
     display: block;
-    height: 150%;
+    height: 100%;
     width: 100%;
     padding: 10px 15px;
     font-size: 1rem;
@@ -209,14 +191,18 @@
 .add-lost .container .right{
     background-image: url("../assets/images/AddBackground.png");
     background-size: cover;
+    background-position: 90px;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    justify-self: flex-end;
     justify-content: stretch;
     border-radius: 2rem;
-    background-color: #D9D9D9;
-    width: 100%;
+    width: 75%;
+    height: 100%;
+    margin-right: -30px;
+    padding: 20px 40px;
 }
 @media (max-width:991px) {
     .add-lost .container .right{
@@ -229,13 +215,15 @@
 }
 .add-lost .container .right .images{
     /* border: 1px solid green; */
-    margin-top: 20px;
-    margin-right: 50px;
+    margin-top: 15px;
+    margin-right: 20px;
     height: 50%;
     width: 80%;
+    padding: 10px;
 }
 .add-lost .container .right .images img{
     width: 100%;
+    height: 95%;
     border-radius: 2rem;
 }
 @media (max-width:991px) {
@@ -245,7 +233,8 @@
 }
 .add-lost .container .right .right-input-container{
     color: #D9D9D9;
-    width: 55%;
+    width:400px;
+    margin-top: 20px;
 }
 .add-lost .container .right .right-input-container .input-container{
     margin-top: 10px;
@@ -271,6 +260,13 @@
     font-size: 1rem;
     color: #000;
 }
+@media (max-width:600px) {
+    .add-lost .container .left .left-input-container .input-container textarea,
+    .add-lost .container .left .left-input-container .input-container input,
+    .add-lost .container .right .right-input-container .input-container input{
+        font-size: 0.7rem;
+    }
+}
 @media (max-width:991px){
     .add-lost .container .right .right-input-container{
         color: #000000;
@@ -288,29 +284,44 @@
 }
 @media (max-width:767px) {
     .add-lost .container .right .right-input-container{
-        width: 90%;
+        width: 100%;
     }
 }
 .add-lost .container .right .conf-btn{
     border: var(--main-color) 1px solid;
-    width: 50%;
+    width: 300px;
+    height: 60px;
     border-radius: 2rem;
     background-color: #D9D9D9;
+    color: var(--main-color);
     cursor: pointer;
     font-weight: bold;
-    transition: 0.5s;
+    text-align: center;
+    position: relative;
+    transition: all 0.5s;
     margin-top: 0;
 }
-@media (min-width:1200px) {
-    .add-lost .container .right .conf-btn{
-        margin-top: -30px;
-        margin-right: 350px;
-    }
+.add-lost .container .right .conf-btn span{
+    display: block;
+    position: relative;
+    z-index: 2;
 }
+.add-lost .container .right .conf-btn::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-radius: 2rem;
+    background-color:var(--main-color);
+    transition: all 0.3s;
+}
+
 @media (min-width:991px) {
     .add-lost .container .right .conf-btn{
         margin-top: -30px ;
-        margin-right: 350px;
+        margin-right: 550px;
         margin-left: 20px;
     }
 }
@@ -319,26 +330,18 @@
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
-
+    }
+}
+@media (max-width:450px) {
+    .add-lost.container .right .conf-btn{
+        width: 100px;
     }
 }
 .add-lost .container .right .conf-btn:hover{
-    background-color:var(--main-color);
     color: #D9D9D9;
+    border: none;
 }
-.add-lost .container .right .conf-btn:hover :first-child{
-    background-color: #D9D9D9;
-    color: var(--main-color);
+.add-lost .container .right .conf-btn:hover::after{
+    width: calc(100% + 1px);
 }
-.add-lost .container .right .conf-btn :first-child{
-    display: inline-block;
-    background-color: var(--main-color);
-    color: #D9D9D9;
-    padding: 20px;
-    padding-left: 30px;
-    height: 100%;
-    border-radius: 2rem;
-    width: 50%;
-    transition: 0.5s;
-    margin-right: 15px; 
-}
+

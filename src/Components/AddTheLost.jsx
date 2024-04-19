@@ -60,12 +60,7 @@ function AddTheLost(){
                 <CustomLoader/>
             </div>
         ):(
-            <div className='add-lost'>
-            <div className="background-rectangle1"></div>
-            <div className="background-rectangle2"></div>
-            <div className="background-line1"></div>
-            <div className="background-line2"></div>
-            <div className="background-line3"></div>
+        <div className='add-lost'>
             <div className='container'>
                 <div className='left'>
                     <h1>Add the lost you found</h1>
@@ -100,7 +95,7 @@ function AddTheLost(){
                         </div>
                     </div>
                 </div>
-                <div className='right'>
+                {<div className='right'>
                     <div className='images'>
                         <img src='/src/assets/images/images.PNG' alt='images' />
                     </div>
@@ -116,11 +111,10 @@ function AddTheLost(){
                             <input type="text" placeholder="Enter contact number " name='phoneNumber' value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} pattern="^01[0125][0-9]{8}" />
                         </div>
                     </div>
-                    <div className='conf-btn' onClick={handleSubmit}>
-                            <span>Confirm </span>
-                            <span>information</span>
-                    </div>
-                </div>
+                    <button className='conf-btn' onClick={handleSubmit}>
+                        <span>Confirm information</span>
+                    </button>
+                </div>}
             </div>
         </div>
         )
