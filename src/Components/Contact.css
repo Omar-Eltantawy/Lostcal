@@ -1,10 +1,10 @@
 .contact {
   display: flex;
-  background-color: var(--main-color);
+  background-color: #D9D9D9;
 }
 
 .contact .contact-left {
-  background-color: rgba(217, 217, 217, 1);
+  background-color: #BEBDBD;
   padding: 30px 20px 10px;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -24,7 +24,7 @@
   }
 }
 
-.contact .contact-left:before {
+/* .contact .contact-left:before {
   content: "";
   position: absolute;
   width: 100px;
@@ -46,7 +46,7 @@
   bottom: -30px;
   border-radius: 50%;
   z-index: 0;
-}
+} */
 
 .contact .contact-left h3 {
   color: var(--main-color);
@@ -90,6 +90,8 @@
 .contact .contact-left .social-imgs{
     position: relative;
     z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact .contact-left div img {
@@ -98,11 +100,78 @@
 
 .contact .contact-right {
   padding: 30px;
-  color: white;
+  color: #151528;
   flex: 1;
+  position: relative;
 }
 
-.contact .contact-right .form-row {
+.contact .contact-right::before{
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(80, 192, 225, 0.27);
+  right: 50px;
+  bottom: 30px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.contact .contact-right::after{
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: rgba(21, 21, 40, 0.42);
+  right: -40px;
+  bottom: -30px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+
+.contact .contact-right h3 {
+  font-size: 34px;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.contact .contact-right div{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact .contact-right div:last-child{
+  margin-bottom: 120px;
+}
+
+@media (min-width: 768px) {
+  .contact .contact-right div {
+        flex-direction: row;
+        margin-left: 30px;
+    }
+}
+
+.contact .contact-right div img {
+  width: 60px;
+}
+
+.contact .contact-right div p{
+  font-size: 24px;
+  font-weight: 400;
+  position: relative;
+}
+
+@media (min-width: 1280px){
+  .contact .contact-right div p{
+    width: 60%;
+  }
+}
+
+/* .contact .contact-right .form-row {
   display: flex;
   gap: 50px;
   margin-bottom: 12px;
@@ -193,4 +262,4 @@
     border: 1px solid #50c0e1;
     background-color: var(--main-color);
     color: #50c0e1;
-}
+} */

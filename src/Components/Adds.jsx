@@ -12,7 +12,9 @@ const Adds = () => {
   const dispatch=useDispatch();
   const addsData=useSelector((state)=>state.add.data);
   useEffect(()=>{
-    dispatch(getAdds(token))
+    if(token){
+      dispatch(getAdds(token))
+    }
     addsData
     // console.log(addsData)
   },[token,dispatch,addsData]);

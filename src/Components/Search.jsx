@@ -13,7 +13,9 @@ const Search = () => {
     const lostPeople=useSelector((state)=>state.lost.data)
     const dispatch=useDispatch();
     useEffect(()=>{
-        dispatch(searchForLost({nameToSearch,token}));
+        if (nameToSearch && token) {
+            dispatch(searchForLost({ nameToSearch, token }));
+        }
     },[nameToSearch,token,dispatch])
     return (
         <div style={{overflow:"hidden"}}>

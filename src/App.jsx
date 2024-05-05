@@ -6,11 +6,13 @@ import Login from './Components/Login'
 import FindLost from './Components/FindLost'
 import AddTheLost from './Components/AddTheLost'
 import Search from './Components/Search'
-import User from './Components/user'
+import User from './Components/User'
 import Adds from './Components/Adds'
 import Losts from './Components/Losts'
 import ForgotPassword from './Components/ForgotPassword'
 import ChangePassword from './Components/ChangePassword'
+import SecretCode from './Components/SecretCode'
+import ResetPassword from './Components/ResetPassword'
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path='/losts' element={<Losts/>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path='/change-password' element={<ChangePassword/>}/>
+          <Route path='/secret-code' element={<SecretCode/>}/>
+          <Route path='/reset-password' element={<ResetPassword/>}/>
         </Routes>
       </div>
       

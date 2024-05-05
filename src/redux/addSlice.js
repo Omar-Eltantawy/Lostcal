@@ -12,11 +12,11 @@ const initialState={
 
 export const addTheLost=createAsyncThunk("add/addTheLost",async ({formData,token},{rejectWithValue})=>{
     try{
-        const response = await axios.post("https://lostcal.onrender.com/lost",formData,
+        const response = await axios.post("https://lostcal.onrender.com/api/lost",formData,
         {
             headers:{
                 'Content-Type': 'multipart/form-data',
-                Authorization: token,
+                Authorization:`Bearer ${token}`,
             },
         });
         return response.data;
@@ -31,9 +31,9 @@ export const addTheLost=createAsyncThunk("add/addTheLost",async ({formData,token
 
 export const getAdds=createAsyncThunk("add/getAdd",async(token,{rejectWithValue})=>{
     try{
-        const response =await axios.get("https://lostcal.onrender.com/lost",{
+        const response =await axios.get("https://lostcal.onrender.com/api/lost",{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             },
         })
         // console.log(response.data);
@@ -47,9 +47,9 @@ export const getAdds=createAsyncThunk("add/getAdd",async(token,{rejectWithValue}
 
 export const deleteAdds=createAsyncThunk("add/deleteAdds",async({id,token},{rejectWithValue})=>{
     try{
-        const response=await axios.delete(`https://lostcal.onrender.com/lost/${id}`,{
+        const response=await axios.delete(`https://lostcal.onrender.com/api/lost/${id}`,{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             },
         })
         return response.data;

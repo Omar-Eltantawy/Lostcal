@@ -11,14 +11,16 @@ const Signup = () => {
     const [username,setUsername]=useState("");
     const [email, setEmail]=useState("");
     const [password,setPassword]=useState("");
+    const [passwordConfirm,setPasswordConfirm]=useState("");
     const navigate=useNavigate();
     const handleSubmit=(e)=>{
         e.preventDefault();
-        dispatch(signupUser({username,email,password}));
+        dispatch(signupUser({username,email,password,passwordConfirm}));
 
         setUsername("");
         setEmail("");
         setPassword("");
+        setPasswordConfirm("");
     }
     useEffect(()=>{
         if(token){
@@ -53,7 +55,7 @@ const Signup = () => {
                     </div>
                     <div className='input-container'>
                         <img src='/src/assets/images/password.png'/>
-                        <input type='password' required placeholder='Enter your password' name='confirm password' pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+                        <input type='password' required placeholder='Confirm Password' name='confirm password' value={passwordConfirm} onChange={(e)=>setPasswordConfirm(e.target.value)}  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
                     </div>
                     <button type='submit' disabled={loading === true}>Sign Up</button>
                     <Link to="/login" className='have-account'>Already Have Account?</Link>

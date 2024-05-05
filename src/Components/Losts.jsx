@@ -12,7 +12,9 @@ const Losts = () => {
   const myLostPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
   useEffect(()=>{
-    dispatch(getLost(token));
+    if (token) {
+      dispatch(getLost(token));
+    }
     lostsData
   },[token,dispatch,lostsData]);
   return (

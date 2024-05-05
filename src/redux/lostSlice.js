@@ -10,10 +10,10 @@ const initialState={
 };
 export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData, token }, { rejectWithValue }) => {
         try {
-            const response = await axios.post("https://lostcal.onrender.com/mylost",formData,
+            const response = await axios.post("https://lostcal.onrender.com/api/mylost",formData,
                 {
                     headers: {
-                        Authorization: token,
+                        Authorization:`Bearer ${token}`,
                         "Content-Type": "multipart/form-data"
                     }
                 }
@@ -31,9 +31,9 @@ export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData
 
 export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSearch,token},{rejectWithValue})=>{
     try{
-        const response=await axios.get(`https://lostcal.onrender.com/mylost/search?name=${nameToSearch}`,{
+        const response=await axios.get(`https://lostcal.onrender.com/api/mylost/search?name=${nameToSearch}`,{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             }
         });
         
@@ -48,9 +48,9 @@ export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSe
 
 export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValue})=>{
     try{
-        const response=await axios.get("https://lostcal.onrender.com/mylost",{
+        const response=await axios.get("https://lostcal.onrender.com/api/mylost",{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             }
         });
         // console.log(response.data);
@@ -64,9 +64,9 @@ export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValu
 
 export const deleteLost=createAsyncThunk("lost/deleteLost",async({id,token},{rejectWithValue})=>{
     try{
-        const response=await axios.delete(`https://lostcal.onrender.com/mylost/${id}`,{
+        const response=await axios.delete(`https://lostcal.onrender.com/api/mylost/${id}`,{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             }
         });
         console.log(response.data);

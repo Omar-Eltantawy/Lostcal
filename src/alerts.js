@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const showSuccessAlert = (message) => {
@@ -16,4 +17,10 @@ const showErrorAlert = (message) => {
     });
 };
 
-export { showSuccessAlert, showErrorAlert};
+
+const navigatePage=(url)=>{
+    const navigate=useNavigate();
+    navigate(url);
+};
+
+export { showSuccessAlert, showErrorAlert,navigatePage};

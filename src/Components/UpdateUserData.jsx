@@ -2,41 +2,34 @@ import React, { useState } from 'react'
 import "./UpdateUserData.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUsername } from '../redux/patchSlice';
+import { showErrorAlert } from '../alerts';
 const UpdateUserData = ({type,name,email,id}) => {
   const token=useSelector((state)=>state.user.token);
-  const [updatedUsername,setUpdatedUsername]=useState(name);
-  const [updatedEmail,setUpdatedEmail]=useState(email);
+  const [username,setUsername]=useState(name);
+  // const [updatedEmail,setUpdatedEmail]=useState(email);
   const dispatch=useDispatch()
   const handleInputChange=(e)=>{
-    type === "username"?
-      setUpdatedUsername(e.target.value):
-      setUpdatedEmail(e.target.value);
+      setUsername(e.target.value)
   }
   const handleUpdateUsername=()=>{
-    if( ! updatedUsername ){
+    if( ! username ){
       showErrorAlert("Please write a username");
       return
     }
-    dispatch(updateUsername(updateUsername,id,token))
+    dispatch(updateUsername({username,token}))
+    console.log(token)
   }
-  const handleUpdatedEmail=()=>{
-    if( ! updatedUsername ){
-      showErrorAlert("Please write an email");
-      return
-    }
-  }
-
   return (
     <div className='update-user-data'>
         <label>{type}</label><br/>
         <div className='label-container'>
             <input 
               type='text'
-              value={type === "username" ? updatedUsername : updatedEmail} 
-              placeholder={`Update Your ${type}`} 
+              value={ username} 
+              placeholder={`Update Your username`} 
               onChange={(e)=>handleInputChange(e)} />
         </div>
-        <button className='update' onClick={type === "username" ? handleUpdateUsername : handleUpdatedEmail }>Update</button>
+        <button className='update' onClick={handleUpdateUsername}>Update</button>
     </div>
   )
 }

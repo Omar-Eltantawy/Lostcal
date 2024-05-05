@@ -6,6 +6,8 @@ import { loginUser } from '../redux/authSlice'
 import {CustomLoader} from '../CustomLoader'
 const Login = () => {
     const token=useSelector((state)=>state.user.token);
+    const cookie=useSelector((state)=>state.user.cookies);
+
     const loading=useSelector((state)=>state.user.loading);
     const dispatch=useDispatch();
     const [email, setEmail]=useState("");
@@ -23,6 +25,8 @@ const Login = () => {
     useEffect(() => {
         if (token) {
             navigate('/');
+            console.log(token)
+            console.log(token.cookies)
         }
     }, [token, navigate]);
 

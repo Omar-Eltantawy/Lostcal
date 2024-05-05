@@ -1,37 +1,41 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { showErrorAlert, showSuccessAlert} from "../alerts";
+import { navigatePage, showErrorAlert, showSuccessAlert} from "../alerts";
 const initialState={
-    loading:false,
-    token:null,
-    error:null,
-    data:[],
+    token: null,
+    loading: false,
+    success:false,
+    error: null,
+    data:[]
 }
-export const signupUser=createAsyncThunk("user/signupUser",async ({username,email,password},{rejectWithValue})=>{
-    return await axios.post("https://lostcal.onrender.com/user/signup",{
+export const signupUser=createAsyncThunk("user/signupUser",async ({username,email,password,passwordConfirm},{rejectWithValue})=>{
+    return await axios.post("https://lostcal.onrender.com/api/user/signup",{
         username,
         email,
-        password
+        password,
+        passwordConfirm
     },{
         headers:{
             Accept:"application/json",
             "Content-Type":"application/json"
         }
-    }).then((res)=>res.data)
+    }).then((res)=>{
+        return res.data.token
+    })
     .catch((error)=>{
         console.log(rejectWithValue(error.response.data.errors))
         return rejectWithValue(error.response.data.errors);
     });
 });
 export const loginUser=createAsyncThunk("user/loginUser",async ({email,password},{rejectWithValue})=>{
-    return await axios.post("https://lostcal.onrender.com/user/login",{
+    return await axios.post("https://lostcal.onrender.com/api/user/login",{
         email,
         password
     },{
         headers:{
             Accept:"application/json",
             "Content-Type":"application/json"
-        }
+        },
     }).then((res)=>{
         // console.log(res.data.token)
         return res.data.token
@@ -41,11 +45,12 @@ export const loginUser=createAsyncThunk("user/loginUser",async ({email,password}
     });
 } );
 
+
 export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejectWithValue})=>{
-    return await axios.get("https://lostcal.onrender.com/user/profile",{
+    return await axios.get("https://lostcal.onrender.com/api/user/profile",{
         headers:{
-            Authorization:token,
-        }
+            Authorization:`Bearer ${token}`,
+        },
     }).then((res)=>{
         // console.log(res.data);
         return res.data;
@@ -55,7 +60,62 @@ export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejec
     })
 })
 
-const setLoading = (loading) => ({ type: 'auth/setLoading', payload: loading });
+
+// export const updatePassword=createAsyncThunk("user/updatePassword",async({passwordCurrent,password,passwordConfirm,token})=>{
+//     try{
+//         const response = await axios.patch("https://lostcal.onrender.com/api/user/updateMyPassword",{
+//             passwordCurrent,
+//             password,
+//             passwordConfirm
+//         },{
+//             headers:{
+//                 Authorization : `Bearer ${token}`
+//             }
+//         });
+//         console.log(response.data.token);
+//         return response.data.token;
+//     }catch(error){
+//         console.log(error.response.data.message)
+//         return (error.response.data.message)
+//     }
+// })
+
+export const updatePassword=createAsyncThunk("user/updatePassword",async({passwordCurrent,password,passwordConfirm,token},{rejectWithValue})=>{
+    try{
+        const response = await axios.patch("https://lostcal.onrender.com/api/user/updateMyPassword",{
+            passwordCurrent,
+            password,
+            passwordConfirm
+        },{
+            headers:{
+                Authorization : `Bearer ${token}`
+            }
+        });
+        console.log(response.data.token);
+        return response.data.token;
+    }catch(error){
+        const errorMessages = error.response.data.errors;
+        console.log(rejectWithValue(errorMessages))
+        return rejectWithValue(errorMessages);
+    }
+})
+
+export const resetPassword=createAsyncThunk("user/resetPassword",async({email,newPassword,passwordConfirm},{rejectWithValue})=>{
+    try{
+        const response = await axios.put("https://lostcal.onrender.com/api/user/resetPassword",{
+            email,
+            newPassword,
+            passwordConfirm
+        });
+        console.log(response.data.token);
+        return response.data.token;
+    }catch(error){
+        const errorMessages = error.response.data.errors;
+        console.log(rejectWithValue(errorMessages))
+        return rejectWithValue(errorMessages);
+    }
+})
+const setLoading = (loading) => ({ type: 'user/setLoading', payload: loading });
 
 const authSlice=createSlice({
     name:"user",
@@ -108,6 +168,38 @@ const authSlice=createSlice({
             state.error=action.error.message;
             state.data=[];
         })
+        //////////////////////////////UpdatePassword///////////////////////////////////////////
+        builder.addCase(updatePassword.pending,(state)=>{
+            state.loading=true;
+        });
+        builder.addCase(updatePassword.fulfilled,(state,action)=>{
+            state.loading=false;
+            state.success=true;
+            state.token=action.payload;
+            state.error=null;
+            showSuccessAlert("Your Lost Person's data Updated Successfully ");
+        });
+        builder.addCase(updatePassword.rejected,(state,action)=>{
+            state.loading=false;
+            state.success=false;
+            state.error=action.error.message;
+            showErrorAlert(state.error);
+        });
+        ////////////////////////////resetPassword/////////////////////////////////////////////////
+        builder.addCase(resetPassword.pending,(state)=>{
+            state.loading = true;
+        });
+        builder.addCase(resetPassword.fulfilled,(state,action)=>{
+            state.loading=false;
+            state.success=true;
+            state.token=action.payload;
+            state.error=null;
+        });
+        builder.addCase(resetPassword.rejected,(state,action)=>{
+            state.loading = false;
+            state.success = false;
+            state.error=action.error.message;
+        });
     }
 })
 

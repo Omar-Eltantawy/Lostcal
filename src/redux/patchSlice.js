@@ -10,9 +10,9 @@ const initialState={
 
 export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,id,token},{rejectWithValue})=>{
     try{
-        const response = await axios.patch(`https://lostcal.onrender.com/mylost/${id}`,formData,{
+        const response = await axios.patch(`https://lostcal.onrender.com/api/mylost/${id}`,formData,{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             }
         });
         console.log(response.data);
@@ -26,9 +26,9 @@ export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,
 
 export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,token},{rejectWithValue})=>{
     try{
-        const response=await axios.patch(`https://lostcal.onrender.com/lost/${id}`,formData,{
+        const response=await axios.patch(`https://lostcal.onrender.com/api/lost/${id}`,formData,{
             headers:{
-                Authorization:token,
+                Authorization:`Bearer ${token}`,
             }
         });
         console.log(response.data);
@@ -40,21 +40,24 @@ export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,tok
     }
 });
 
-export const updateUsername=createAsyncThunk("patch/updateUsername",async({username,id,token},{rejectWithValue})=>{
+export const updateUsername=createAsyncThunk("patch/updateUsername",async({username,token},{rejectWithValue})=>{
     try{
-        const response = await axios.patch(`https://lostcal.onrender.com/user/changename/${id}`,username,{
+        const response = await axios.patch("https://lostcal.onrender.com/api/user/changename",{
+            username
+        },{
             headers:{
-                Authorization:token,
+                Authorization : `Bearer ${token}`
             }
         });
-        console.log(response.data);
-        return response.data;
+        console.log(response.data.token);
+        return response.data.token;
     }catch(error){
         const errorMessages = error.response.data.errors;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
+
 
 const patchSlice=createSlice({
     name:"patch",

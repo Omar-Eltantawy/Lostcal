@@ -16,8 +16,14 @@ const User = () => {
   const userData=useSelector((state)=>state.user.data);
   const dispatch=useDispatch();
   useEffect(()=>{
-    dispatch(getUserInfo(token));
+    if(token){
+      dispatch(getUserInfo(token));
+      userData
+      // console.log(userData)
+      // console.log(token)
+    }
   },[userData,token,dispatch])
+
   return (
     <div className={styles.user}>
       <NewHeader active="user" />
@@ -25,7 +31,7 @@ const User = () => {
         <div>
           <div className={styles.userCard}>
             <div className={styles.userData}>
-              <span>{userData.username && userData.username[0]}</span>
+              <span>{userData.username ? userData.username[0]:null}</span>
               <h3>{userData.username}</h3>
             </div>
             <div className={styles.userInputs}>
@@ -51,7 +57,7 @@ const User = () => {
               <div className={styles.userInput}>
                 <div>
                   <label>Email: </label>
-                  <input value={userData.email || ""} type="text" readOnly />
+                  <input value={userData.email || ""}  type="text" readOnly />
                 </div>
                 
               </div>
@@ -64,6 +70,14 @@ const User = () => {
                   <i className="fa-solid fa-pen"></i>
                 </span>
               </div>*/}
+              <div className={styles.changePassword}>
+                <p>Change Password</p>
+                <div className={styles.arrowContainer}>
+                  <Link to="/change-password">
+                    <img src="/src/assets/images/next 5.png" alt="arrow"/>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

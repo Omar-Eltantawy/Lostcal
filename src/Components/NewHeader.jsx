@@ -21,6 +21,7 @@ const NewHeader = ({active}) => {
     }
     useEffect(()=>{
         dispatch(getUserInfo(token));
+        userData
     },[userData,token,dispatch])
     return (
         <div className='search-header'>
@@ -47,7 +48,7 @@ const NewHeader = ({active}) => {
                 </ul>
             </div>
             <div className='profile-info '>
-                <span>{userData.username && userData.username[0]}</span>
+                <span>{userData.username ? userData.username[0] : null}</span>
                 <p>{userData.username}</p>
             </div>
             <div className='burger-icon' onClick={showNav}>
