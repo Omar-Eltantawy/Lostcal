@@ -4,6 +4,7 @@ import lostSlice from "./redux/lostSlice";
 import addSlice from "./redux/addSlice";
 import patchSlice from "./redux/patchSlice";
 import forgetSlice from "./redux/forgetSlice";
+import matchesSlice from "./redux/matchesSlice";
 const store=configureStore({
     reducer:{
         user:authSlice,
@@ -11,6 +12,7 @@ const store=configureStore({
         add:addSlice,
         patch:patchSlice,
         forget:forgetSlice,
+        matches:matchesSlice,
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware({

@@ -9,7 +9,8 @@ const initialState={
     data:[]
 }
 export const signupUser=createAsyncThunk("user/signupUser",async ({username,email,password,passwordConfirm},{rejectWithValue})=>{
-    return await axios.post("https://lostcal.onrender.com/api/user/signup",{
+    // https://lostcal.onrender.com/api/user/signup/signup
+    return await axios.post("http://localhost:8000/api/user/signup",{
         username,
         email,
         password,
@@ -20,7 +21,7 @@ export const signupUser=createAsyncThunk("user/signupUser",async ({username,emai
             "Content-Type":"application/json"
         }
     }).then((res)=>{
-        return res.data.token
+        return res.data
     })
     .catch((error)=>{
         console.log(rejectWithValue(error.response.data.errors))
@@ -28,7 +29,8 @@ export const signupUser=createAsyncThunk("user/signupUser",async ({username,emai
     });
 });
 export const loginUser=createAsyncThunk("user/loginUser",async ({email,password},{rejectWithValue})=>{
-    return await axios.post("https://lostcal.onrender.com/api/user/login",{
+    // https://lostcal.onrender.com/api/user/login
+    return await axios.post("http://localhost:8000/api/user/login",{
         email,
         password
     },{
@@ -37,8 +39,8 @@ export const loginUser=createAsyncThunk("user/loginUser",async ({email,password}
             "Content-Type":"application/json"
         },
     }).then((res)=>{
-        // console.log(res.data.token)
-        return res.data.token
+        console.log(res.data)
+        return res.data
     }).catch((error)=>{
         console.log(rejectWithValue(error.response.data.errors))
         return rejectWithValue(error.response.data.errors);
@@ -47,7 +49,8 @@ export const loginUser=createAsyncThunk("user/loginUser",async ({email,password}
 
 
 export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejectWithValue})=>{
-    return await axios.get("https://lostcal.onrender.com/api/user/profile",{
+    // https://lostcal.onrender.com/api/user/profile
+    return await axios.get("http://localhost:8000/api/user/profile",{
         headers:{
             Authorization:`Bearer ${token}`,
         },
@@ -61,28 +64,10 @@ export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejec
 })
 
 
-// export const updatePassword=createAsyncThunk("user/updatePassword",async({passwordCurrent,password,passwordConfirm,token})=>{
-//     try{
-//         const response = await axios.patch("https://lostcal.onrender.com/api/user/updateMyPassword",{
-//             passwordCurrent,
-//             password,
-//             passwordConfirm
-//         },{
-//             headers:{
-//                 Authorization : `Bearer ${token}`
-//             }
-//         });
-//         console.log(response.data.token);
-//         return response.data.token;
-//     }catch(error){
-//         console.log(error.response.data.message)
-//         return (error.response.data.message)
-//     }
-// })
-
 export const updatePassword=createAsyncThunk("user/updatePassword",async({passwordCurrent,password,passwordConfirm,token},{rejectWithValue})=>{
     try{
-        const response = await axios.patch("https://lostcal.onrender.com/api/user/updateMyPassword",{
+        // https://lostcal.onrender.com/api/user/updateMyPassword
+        const response = await axios.patch("http://localhost:8000/api/user/updateMyPassword",{
             passwordCurrent,
             password,
             passwordConfirm
@@ -91,8 +76,8 @@ export const updatePassword=createAsyncThunk("user/updatePassword",async({passwo
                 Authorization : `Bearer ${token}`
             }
         });
-        console.log(response.data.token);
-        return response.data.token;
+        console.log(response.data);
+        return response.data;
     }catch(error){
         const errorMessages = error.response.data.errors;
         console.log(rejectWithValue(errorMessages))
@@ -102,13 +87,14 @@ export const updatePassword=createAsyncThunk("user/updatePassword",async({passwo
 
 export const resetPassword=createAsyncThunk("user/resetPassword",async({email,newPassword,passwordConfirm},{rejectWithValue})=>{
     try{
-        const response = await axios.put("https://lostcal.onrender.com/api/user/resetPassword",{
+        // https://lostcal.onrender.com/api/user/resetPassword
+        const response = await axios.put("http://localhost:8000/api/user/resetPassword",{
             email,
             newPassword,
             passwordConfirm
         });
-        console.log(response.data.token);
-        return response.data.token;
+        console.log(response.data);
+        return response.data;
     }catch(error){
         const errorMessages = error.response.data.errors;
         console.log(rejectWithValue(errorMessages))
@@ -131,7 +117,8 @@ const authSlice=createSlice({
         });
         builder.addCase(signupUser.fulfilled,(state,action)=>{
             state.loading=false;
-            state.token=action.payload;
+            state.token=action.payload.token;
+            state.data=action.payload.data
             // showSuccessAlert('Signup successful!');
         });
         builder.addCase(signupUser.rejected,(state,action)=>{
@@ -146,7 +133,8 @@ const authSlice=createSlice({
         });
         builder.addCase(loginUser.fulfilled,(state,action)=>{
             state.loading=false;
-            state.token=action.payload;
+            state.token=action.payload.token;
+            state.data=action.payload.data.user;
             // showSuccessAlert('Login successful!');
         });
         builder.addCase(loginUser.rejected,(state,action)=>{
@@ -175,7 +163,8 @@ const authSlice=createSlice({
         builder.addCase(updatePassword.fulfilled,(state,action)=>{
             state.loading=false;
             state.success=true;
-            state.token=action.payload;
+            state.token=action.payload.token;
+            state.data=action.payload.data;
             state.error=null;
             showSuccessAlert("Your Lost Person's data Updated Successfully ");
         });
@@ -192,7 +181,8 @@ const authSlice=createSlice({
         builder.addCase(resetPassword.fulfilled,(state,action)=>{
             state.loading=false;
             state.success=true;
-            state.token=action.payload;
+            state.token=action.payload.token;
+            state.data=action.payload.data;
             state.error=null;
         });
         builder.addCase(resetPassword.rejected,(state,action)=>{

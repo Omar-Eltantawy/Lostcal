@@ -7,7 +7,6 @@ import { getUserInfo } from '../redux/authSlice'
 const NewHeader = ({active}) => {
     const token=useSelector((state)=>state.user.token);
     const userData=useSelector((state)=>state.user.data);
-    const dispatch=useDispatch();
     const [activeLink,setActiveLink]=useState(active);
     const navRef=useRef();
     const showNav=()=>{
@@ -19,10 +18,6 @@ const NewHeader = ({active}) => {
             navRef.current.style.display="none";
         }
     }
-    useEffect(()=>{
-        dispatch(getUserInfo(token));
-        userData
-    },[userData,token,dispatch])
     return (
         <div className='search-header'>
             <div className='logo'>

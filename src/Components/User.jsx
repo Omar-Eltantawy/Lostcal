@@ -13,17 +13,14 @@ const User = () => {
   const onOpenUsernameModal = () => setOpenUsernameModal(true);
   const onCloseUsernameModal = () => setOpenUsernameModal(false);
   const token=useSelector((state)=>state.user.token);
-  const userData=useSelector((state)=>state.user.data);
-  const dispatch=useDispatch();
+  const userData=useSelector((state)=>state.user.data);  
+  const dispatch=useDispatch()
   useEffect(()=>{
     if(token){
       dispatch(getUserInfo(token));
       userData
-      // console.log(userData)
-      // console.log(token)
     }
-  },[userData,token,dispatch])
-
+  },[dispatch,token,userData])
   return (
     <div className={styles.user}>
       <NewHeader active="user" />
@@ -61,15 +58,6 @@ const User = () => {
                 </div>
                 
               </div>
-              {/*<div className={styles.userInput}>
-                <div>
-                  <label>Password: </label>
-                  <input value={"sdlasmkdlasmd"} type="password" readOnly />
-                </div>
-                <span>
-                  <i className="fa-solid fa-pen"></i>
-                </span>
-              </div>*/}
               <div className={styles.changePassword}>
                 <p>Change Password</p>
                 <div className={styles.arrowContainer}>
@@ -84,6 +72,7 @@ const User = () => {
         <div className={styles.buttons}>
           <Link to="/losts">The Losts</Link>
           <Link to="/adds">The Adds</Link>
+          <Link to="/matches">Found Losts</Link>
         </div>
       </section>
     </div>

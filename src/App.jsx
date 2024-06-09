@@ -13,6 +13,8 @@ import ForgotPassword from './Components/ForgotPassword'
 import ChangePassword from './Components/ChangePassword'
 import SecretCode from './Components/SecretCode'
 import ResetPassword from './Components/ResetPassword'
+import Matches from './Components/Matches'
+import RequireAuth from './Components/RequireAuth'
 
 const App = () => {
   return (
@@ -21,19 +23,31 @@ const App = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/login' element={<Login/>}/>
-          <Route path='/find-the-lost' element={<FindLost/>}/>
-          <Route path='/add-the-lost' element={<AddTheLost/>}/>
-          <Route path='/search' element={<Search/>}/>
-          <Route path='/user' element={<User/>}/>
-          <Route path='/adds' element={<Adds/>}/>
-          <Route path='/losts' element={<Losts/>}/>
+          <Route path='/find-the-lost' 
+          element={
+          <RequireAuth>
+            <FindLost/>
+          </RequireAuth>}/>
+          <Route path='/add-the-lost' 
+          element={
+          <RequireAuth>
+            <AddTheLost/>
+          </RequireAuth>}/>
+          <Route path='/search' 
+          element={
+          <RequireAuth>
+            <Search/>
+          </RequireAuth>}/>
+          <Route path='/user' element={<RequireAuth><User/></RequireAuth> }/>
+          <Route path='/adds' element={<RequireAuth><Adds/></RequireAuth>}/>
+          <Route path='/losts' element={<RequireAuth><Losts/></RequireAuth>}/>
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
-          <Route path='/change-password' element={<ChangePassword/>}/>
+          <Route path='/change-password' element={<RequireAuth><ChangePassword/></RequireAuth>}/>
           <Route path='/secret-code' element={<SecretCode/>}/>
           <Route path='/reset-password' element={<ResetPassword/>}/>
+          <Route path='/matches' element={<RequireAuth><Matches/></RequireAuth>}/>
         </Routes>
       </div>
-      
   )
 }
 

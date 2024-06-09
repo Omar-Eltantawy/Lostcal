@@ -10,7 +10,8 @@ const initialState={
 };
 export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData, token }, { rejectWithValue }) => {
         try {
-            const response = await axios.post("https://lostcal.onrender.com/api/mylost",formData,
+            // https://lostcal.onrender.com/api/mylost
+            const response = await axios.post("http://localhost:8000/api/mylost",formData,
                 {
                     headers: {
                         Authorization:`Bearer ${token}`,
@@ -31,7 +32,8 @@ export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData
 
 export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSearch,token},{rejectWithValue})=>{
     try{
-        const response=await axios.get(`https://lostcal.onrender.com/api/mylost/search?name=${nameToSearch}`,{
+        // https://lostcal.onrender.com/api/mylost/search?name=${nameToSearch}
+        const response=await axios.get(`http://localhost:8000/api/mylost/search?name=${nameToSearch}`,{
             headers:{
                 Authorization:`Bearer ${token}`,
             }
@@ -48,7 +50,8 @@ export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSe
 
 export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValue})=>{
     try{
-        const response=await axios.get("https://lostcal.onrender.com/api/mylost",{
+        // https://lostcal.onrender.com/api/mylost
+        const response=await axios.get("http://localhost:8000/api/mylost",{
             headers:{
                 Authorization:`Bearer ${token}`,
             }
@@ -64,7 +67,8 @@ export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValu
 
 export const deleteLost=createAsyncThunk("lost/deleteLost",async({id,token},{rejectWithValue})=>{
     try{
-        const response=await axios.delete(`https://lostcal.onrender.com/api/mylost/${id}`,{
+        // https://lostcal.onrender.com/api/mylost/${id}
+        const response=await axios.delete(`http://localhost:8000/api/mylost/${id}`,{
             headers:{
                 Authorization:`Bearer ${token}`,
             }

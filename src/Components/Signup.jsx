@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Signup.css"
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signupUser } from '../redux/authSlice'
 import { CustomLoader } from '../CustomLoader'
@@ -13,6 +13,8 @@ const Signup = () => {
     const [password,setPassword]=useState("");
     const [passwordConfirm,setPasswordConfirm]=useState("");
     const navigate=useNavigate();
+    const location=useLocation();
+    const redirectPath=location.state?.path || "/";
     const handleSubmit=(e)=>{
         e.preventDefault();
         dispatch(signupUser({username,email,password,passwordConfirm}));
@@ -24,7 +26,7 @@ const Signup = () => {
     }
     useEffect(()=>{
         if(token){
-            navigate("/");
+            navigate(redirectPath,{replace:true});
         }
     },[token,navigate]);
   return (

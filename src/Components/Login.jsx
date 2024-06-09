@@ -1,18 +1,18 @@
 import "./Login.css"
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../redux/authSlice'
 import {CustomLoader} from '../CustomLoader'
 const Login = () => {
     const token=useSelector((state)=>state.user.token);
-    const cookie=useSelector((state)=>state.user.cookies);
-
     const loading=useSelector((state)=>state.user.loading);
     const dispatch=useDispatch();
     const [email, setEmail]=useState("");
     const [password,setPassword]=useState("");
     const navigate=useNavigate();
+    const location=useLocation();
+    const redirectPath=location.state?.path || "/";
     const handleSubmit=(e)=>{
         e.preventDefault();
         dispatch(loginUser({email,password}));
@@ -24,9 +24,8 @@ const Login = () => {
     }
     useEffect(() => {
         if (token) {
-            navigate('/');
+            navigate(redirectPath,{replace:true});
             console.log(token)
-            console.log(token.cookies)
         }
     }, [token, navigate]);
 

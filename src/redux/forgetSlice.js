@@ -12,7 +12,8 @@ const initialState={
 
 export const forgetPassword=createAsyncThunk("user/forgetPassword",async({email},{rejectWithValue})=>{
     try{
-        const response = await axios.post("https://lostcal.onrender.com/api/user/forgetPassword",{email});
+        // https://lostcal.onrender.com/api/user/forgetPassword
+        const response = await axios.post("http://localhost:8000/api/user/forgetPassword",{email});
         console.log(response.data);
         return response.data;
     }catch(error){
@@ -24,7 +25,8 @@ export const forgetPassword=createAsyncThunk("user/forgetPassword",async({email}
 
 export const resetSecretCode=createAsyncThunk("user/resetSecretCode",async({resetCode},{rejectWithValue})=>{
     try{
-        const response =await axios.post("https://lostcal.onrender.com/api/user/verifyResetCode",{resetCode});
+        // https://lostcal.onrender.com/api/user/verifyResetCode
+        const response =await axios.post("http://localhost:8000/api/user/verifyResetCode",{resetCode});
         console.log(response.data);
         return response.data;
     }catch(error){

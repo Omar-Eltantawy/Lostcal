@@ -10,7 +10,8 @@ const initialState={
 
 export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,id,token},{rejectWithValue})=>{
     try{
-        const response = await axios.patch(`https://lostcal.onrender.com/api/mylost/${id}`,formData,{
+        // https://lostcal.onrender.com/api/mylost/${id}
+        const response = await axios.patch(`http://localhost:8000/api/mylost/${id}`,formData,{
             headers:{
                 Authorization:`Bearer ${token}`,
             }
@@ -26,7 +27,8 @@ export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,
 
 export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,token},{rejectWithValue})=>{
     try{
-        const response=await axios.patch(`https://lostcal.onrender.com/api/lost/${id}`,formData,{
+        // https://lostcal.onrender.com/api/lost/${id}
+        const response=await axios.patch(`http://localhost:8000/api/lost/${id}`,formData,{
             headers:{
                 Authorization:`Bearer ${token}`,
             }
@@ -42,15 +44,16 @@ export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,tok
 
 export const updateUsername=createAsyncThunk("patch/updateUsername",async({username,token},{rejectWithValue})=>{
     try{
-        const response = await axios.patch("https://lostcal.onrender.com/api/user/changename",{
+        // https://lostcal.onrender.com/api/user/changename
+        const response = await axios.patch("http://localhost:8000/api/user/changename",{
             username
         },{
             headers:{
                 Authorization : `Bearer ${token}`
             }
         });
-        console.log(response.data.token);
-        return response.data.token;
+        console.log(response.data);
+        return response.data;
     }catch(error){
         const errorMessages = error.response.data.errors;
         console.log(rejectWithValue(errorMessages))
