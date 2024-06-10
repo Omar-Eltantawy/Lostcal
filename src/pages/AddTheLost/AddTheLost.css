@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../assets/images/Rectangle\ 36.png");
+    /* background-image: url("../../assets/images/AddBackground.png"); */
     background-size: auto;
     position: relative;
     /* overflow-x: hidden; */
@@ -189,7 +189,7 @@
     }
 }
 .add-lost .container .right{
-    background-image: url("../assets/images/AddBackground.png");
+    background-image: url("../../assets/images/AddBackground.png");
     background-size: cover;
     background-position: 90px;
     background-repeat: no-repeat;
