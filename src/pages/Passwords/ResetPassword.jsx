@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import iIcon from "../assets/images/otpImage.png";
-import lock from "../assets/images/email 2.png";
+import iIcon from "../../assets/images/otpImage.png";
+import lock from "../../assets/images/email 2.png";
 import styles from "./ForgotPassword.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPassword } from '../redux/authSlice';
-import { CustomLoader } from '../CustomLoader';
+import { resetPassword } from '../../redux/authSlice';
+import { CustomLoader } from '../../CustomLoader';
 
 const ResetPassword = () => {
     const [email,setEmail]=useState("");

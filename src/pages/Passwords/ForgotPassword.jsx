@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import iIcon from "../assets/images/iIcon.png";
-import mail from "../assets/images/email 2.png";
+import iIcon from "../../assets/images/iIcon.png";
+import mail from "../../assets/images/email 2.png";
 
 import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CustomLoader } from "../CustomLoader";
-import { forgetPassword } from "../redux/forgetSlice";
+import { CustomLoader } from "../../CustomLoader";
+import { forgetPassword } from "../../redux/forgetSlice";
 
 const ForgotPassword = () => {
   const [email,setEmail]=useState("");

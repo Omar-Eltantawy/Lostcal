@@ -1,10 +1,10 @@
 import "./Adds.css"
 import React, { Fragment, useEffect } from 'react'
-import NewHeader from './NewHeader'
-import LostCard from './LostCard'
+import NewHeader from '../../Components/NewHeader/NewHeader';
+import LostCard from '../../Components/Cards/LostCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getLost } from '../redux/lostSlice'
-import { CustomLoader } from "../CustomLoader"
+import { getLost } from '../../redux/lostSlice'
+import { CustomLoader } from "../../CustomLoader"
 
 const Losts = () => {
   const token=useSelector((state)=>state.user.token);

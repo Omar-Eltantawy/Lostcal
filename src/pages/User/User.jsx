@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import NewHeader from "./NewHeader";
+import NewHeader from '../../Components/NewHeader/NewHeader';
 import styles from "./User.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserInfo } from "../redux/authSlice";
+import { getUserInfo } from "../../redux/authSlice";
 import Modal from "react-responsive-modal";
-import UpdateUserData from "./UpdateUserData";
+import UpdateUserData from "../../Components/UpdatePopups/UpdateUserData";
 
 const User = () => {
   const [openUsernameModal, setOpenUsernameModal] = useState(false);

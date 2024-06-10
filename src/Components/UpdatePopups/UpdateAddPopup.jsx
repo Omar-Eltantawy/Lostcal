@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import addImage from "../assets/images/image-gallery 1.png";
+import addImage from "../../assets/images/image-gallery 1.png";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAdd } from '../redux/patchSlice';
+import { updateAdd } from '../../redux/patchSlice';
 const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
     const token=useSelector((state)=>state.user.token);
     const [updatedName,setUpdatedName]=useState(name)

@@ -1,5 +1,5 @@
 import "./Contact.css"
-import circle from "../assets/images/Group 139.png"
+import circle from "../../assets/images/Group 139.png"
 function Contact() {
   return (
     <div className="contact">

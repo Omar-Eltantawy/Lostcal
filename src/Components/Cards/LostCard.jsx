@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import "./LostCard.css"
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteAdds } from '../redux/addSlice';
-import { deleteLost } from '../redux/lostSlice';
+import { deleteAdds } from '../../redux/addSlice';
+import { deleteLost } from '../../redux/lostSlice';
 import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
-import UpdateAddPopup from './UpdateAddPopup';
-import UpdateMyLostPopup from './UpdateMyLostPopup';
+import UpdateAddPopup from '../../Components/UpdatePopups/UpdateAddPopup';
+import UpdateMyLostPopup from '../../Components/UpdatePopups/UpdateMyLostPopup';
 const LostCard = ({lost,add,search,name,age,address,phoneNumber,images,email,img,id}) => {
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);

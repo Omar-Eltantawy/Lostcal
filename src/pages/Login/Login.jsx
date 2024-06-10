@@ -2,8 +2,8 @@ import "./Login.css"
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../redux/authSlice'
-import {CustomLoader} from '../CustomLoader'
+import { loginUser } from '../../redux/authSlice'
+import {CustomLoader} from '../../CustomLoader'
 const Login = () => {
     const token=useSelector((state)=>state.user.token);
     const loading=useSelector((state)=>state.user.loading);

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import "./NewHeader.css"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserInfo } from '../redux/authSlice'
+import { getUserInfo } from '../../redux/authSlice'
 
 const NewHeader = ({active}) => {
     const token=useSelector((state)=>state.user.token);

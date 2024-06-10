@@ -1,22 +1,23 @@
-import React from 'react'
-import Home from './Components/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Signup from './Components/Signup'
-import Login from './Components/Login'
-import FindLost from './Components/FindLost'
-import AddTheLost from './Components/AddTheLost'
-import Search from './Components/Search'
-import User from './Components/User'
-import Adds from './Components/Adds'
-import Losts from './Components/Losts'
-import ForgotPassword from './Components/ForgotPassword'
-import ChangePassword from './Components/ChangePassword'
-import SecretCode from './Components/SecretCode'
-import ResetPassword from './Components/ResetPassword'
-import Matches from './Components/Matches'
-import RequireAuth from './Components/RequireAuth'
+import Home from '../pages/Home/Home'
+import Signup from '../pages/Signup/Signup'
+import Login from '../pages/Login/Login'
+import FindLost from '../pages/FindTheLost/FindLost'
+import AddTheLost from '../pages/AddTheLost/AddTheLost'
+import Search from '../pages/Search/Search'
+import User from '../pages/User/User'
+import Adds from '../pages/Adds&Losts/Adds'
+import Losts from '../pages/Adds&Losts/Losts'
+import ForgotPassword from "../pages/Passwords/ForgotPassword"
+import ChangePassword from "../pages/Passwords/ChangePassword"
+import ResetPassword from "../pages/Passwords/ResetPassword"
+import SecretCode from '../pages/Passwords/SecretCode'
+import Matches from '../pages/Matches/Matches'
+import RequireAuth from './RequireAuth'
 
-const App = () => {
+
+
+const AppRouter = () => {
   return (
       <div>
         <Routes>
@@ -51,4 +52,4 @@ const App = () => {
   )
 }
 
-export default App
+export default AppRouter

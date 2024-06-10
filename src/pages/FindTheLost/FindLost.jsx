@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import "./FindLost.css";
-import nameImg from "../assets/images/profile 3.png";
-import ageImg from "../assets/images/market 1.png";
-import addressImg from "../assets/images/location 1.png";
-import splatter from "../assets/images/paint-splat-paint-splashes-design-use-abstract-vector-illus-illustration-85649903 1.png";
-import mainImage from "../assets/images/undraw_People_search_re_5rre-removebg-preview 1.png";
-import logo from "../assets/images/WhatsApp Image 2023-10-07 at 11.03 1.png";
-import addImage from "../assets/images/image-gallery 1.png";
-import emailImg from "../assets/images/email 2.png";
-import phone from "../assets/images/phone-call 2.png";
-import NewHeader from "./NewHeader"
-import { showErrorAlert, showSuccessAlert } from "../alerts";
+import nameImg from "../../assets/images/profile 3.png";
+import ageImg from "../../assets/images/market 1.png";
+import addressImg from "../../assets/images/location 1.png";
+import splatter from "../../assets/images/paint-splat-paint-splashes-design-use-abstract-vector-illus-illustration-85649903 1.png";
+import mainImage from "../../assets/images/undraw_People_search_re_5rre-removebg-preview 1.png";
+import logo from "../../assets/images/WhatsApp Image 2023-10-07 at 11.03 1.png";
+import addImage from "../../assets/images/image-gallery 1.png";
+import emailImg from "../../assets/images/email 2.png";
+import phone from "../../assets/images/phone-call 2.png";
+import { showErrorAlert, showSuccessAlert } from "../../alerts";
 import { useDispatch, useSelector } from "react-redux";
-import { findTheLost } from "../redux/lostSlice";
-import { CustomLoader } from "../CustomLoader";
+import { findTheLost } from "../../redux/lostSlice";
+import { CustomLoader } from "../../CustomLoader";
 
 function FindLost() {
     const token=useSelector((state)=>state.user.token);

@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import iIcon from "../assets/images/lockIcon.png";
-import lock from "../assets/images/padlock 1.png";
-import confirm from "../assets/images/confirmation 1.png";
+import iIcon from "../../assets/images/lockIcon.png";
+import lock from "../../assets/images/padlock 1.png";
+import confirm from "../../assets/images/confirmation 1.png";
 import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updatePassword } from "../redux/authSlice";
-import { CustomLoader } from "../CustomLoader";
-import { showErrorAlert, showSuccessAlert } from "../alerts";
+import { updatePassword } from "../../redux/authSlice";
+import { CustomLoader } from "../../CustomLoader";
+import { showErrorAlert, showSuccessAlert } from "../../alerts";
 
 const ChangePassword = () => {
   const [passwordCurrent,setPasswordCurrent]=useState("")

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import NewHeader from './NewHeader'
+import NewHeader from '../../Components/NewHeader/NewHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import { allMatches } from '../redux/matchesSlice';
-import MatchesCard from './MatchesCard';
+import { allMatches } from '../../redux/matchesSlice';
+import MatchesCard from '../../Components/Cards/MatchesCard';
 
 const Matches = () => {
   const token = useSelector((state)=>state.user.token);

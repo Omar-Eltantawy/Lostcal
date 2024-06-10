@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import "./UpdateMyLostPopup.css";
-import addImage from "../assets/images/image-gallery 1.png";
+import addImage from "../../assets/images/image-gallery 1.png";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateMyLost } from '../redux/patchSlice';
+import { updateMyLost } from '../../redux/patchSlice';
 
 const UpdateMyLostPopup = ({ name, age, address, phoneNumber, images, email, id }) => {
     const token = useSelector((state) => state.user.token);

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "./Search.css"
-import NewHeader from './NewHeader'
-import LostCard from './LostCard'
+import NewHeader from '../../Components/NewHeader/NewHeader';
+import LostCard from '../../Components/Cards/LostCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchForLost } from '../redux/lostSlice'
+import { searchForLost } from '../../redux/lostSlice'
 
 
 
