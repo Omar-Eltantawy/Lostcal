@@ -1,11 +1,15 @@
 .losts,
-.adds{
+.adds,
+.matches{
     overflow: hidden;
-        background-color: #D9D9D9;
-
+    background-color: #D9D9D9;
+}
+.fullHeight{
+    height: 100vh;
 }
 .adds .heading,
-.losts .heading{
+.losts .heading,
+.matches .heading{
     /* background-color: #38a1f1; */
     background-color: var(--main-color);
     width: fit-content;
@@ -13,8 +17,9 @@
     text-align: center;
     margin: 50px auto;
     padding:30px;
-    border-radius: 50%;
+    border-radius: 10px;
     color: #fff;
+    box-shadow: 0 4px 8px #D9D9D9;
 }
 @media (max-width:600px) {
     .adds .heading,
@@ -33,4 +38,22 @@
     justify-content: center; 
     align-items: center; 
     z-index: 9999; 
+}
+
+
+.losts .empty,
+.adds .empty,
+.matches .empty{
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--main-color);
+    max-width: 400px;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+}
+.empty h1 {
+    font-size: 30px;
+    margin: 15px 0;
+    color: var(--main-color);
 }

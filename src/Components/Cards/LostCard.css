@@ -9,15 +9,13 @@
 .lost-card .card-container{
     width: 70%;
     height: 400px;
-    /* background-color: var(--main-color); */
+    /* background-color: #BEBDBD; */
     background-color: #BEBDBD;
     border-radius: 2rem;
     display: flex;
     align-items: center;
     position: relative;
-        /* border:  5px solid #38a1f1; */
-
-    /* justify-content: center; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 @media (max-width:1191px) {
     .lost-card .card-container{

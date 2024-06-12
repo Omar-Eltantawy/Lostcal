@@ -110,6 +110,9 @@ const authSlice=createSlice({
         setLoading:(state,action)=>{
             state.loading=action.payload;
         },
+        resetSuccess:(state)=>{
+            state.success=false;
+        }
     },
     extraReducers:(builder)=>{
         builder.addCase(signupUser.pending,(state)=>{
@@ -194,4 +197,5 @@ const authSlice=createSlice({
 })
 
 
+export const {resetSuccess} = authSlice.actions
 export default authSlice.reducer

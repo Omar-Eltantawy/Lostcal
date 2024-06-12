@@ -1,10 +1,10 @@
 import { configureStore  } from "@reduxjs/toolkit";
-import authSlice from "./redux/authSlice";
-import lostSlice from "./redux/lostSlice";
-import addSlice from "./redux/addSlice";
-import patchSlice from "./redux/patchSlice";
-import forgetSlice from "./redux/forgetSlice";
-import matchesSlice from "./redux/matchesSlice";
+import authSlice from "./authSlice";
+import lostSlice from "./lostSlice";
+import addSlice from "./addSlice";
+import patchSlice from "./patchSlice";
+import forgetSlice from "./forgetSlice";
+import matchesSlice from "./matchesSlice";
 const store=configureStore({
     reducer:{
         user:authSlice,

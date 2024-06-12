@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getUserInfo } from "../../redux/authSlice";
 import Modal from "react-responsive-modal";
 import UpdateUserData from "../../Components/UpdatePopups/UpdateUserData";
+import { userDataSelector } from "../../redux/selectors/selectors";
 
 const User = () => {
   const [openUsernameModal, setOpenUsernameModal] = useState(false);
@@ -13,14 +14,12 @@ const User = () => {
   const onOpenUsernameModal = () => setOpenUsernameModal(true);
   const onCloseUsernameModal = () => setOpenUsernameModal(false);
   const token=useSelector((state)=>state.user.token);
-  const userData=useSelector((state)=>state.user.data);  
+  // const userData=useSelector((state)=>state.user.data);  
+  const userData=useSelector(userDataSelector);  
   const dispatch=useDispatch()
   useEffect(()=>{
-    if(token){
       dispatch(getUserInfo(token));
-      userData
-    }
-  },[dispatch,token,userData])
+  },[dispatch,token,userData.length])
   return (
     <div className={styles.user}>
       <NewHeader active="user" />

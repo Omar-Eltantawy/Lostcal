@@ -6,15 +6,16 @@ import confirm from "../../assets/images/confirmation 1.png";
 import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updatePassword } from "../../redux/authSlice";
+import { resetSuccess, updatePassword } from "../../redux/authSlice";
 import { CustomLoader } from "../../CustomLoader";
 import { showErrorAlert, showSuccessAlert } from "../../alerts";
+import { userToken } from "../../redux/selectors/selectors";
 
 const ChangePassword = () => {
   const [passwordCurrent,setPasswordCurrent]=useState("")
   const [password,setPassword]=useState("")
   const [passwordConfirm,setPasswordConfirm]=useState("")
-  const token=useSelector((state)=>state.user.token);
+  const token=useSelector(userToken);
   const loading=useSelector((state)=>state.user.loading);
   const success=useSelector((state)=>state.user.success);
   const error=useSelector((state)=>state.user.error);
@@ -22,9 +23,10 @@ const ChangePassword = () => {
   const navigate =useNavigate()
   useEffect(()=>{
     if(success){
-      navigate("/")
+      navigate("/");
+      dispatch(resetSuccess());
     }
-  },[success])
+  },[success,navigate])
   const handleSubmit=()=>{
     console.log(token)
     dispatch(updatePassword({passwordCurrent,password,passwordConfirm,token}));

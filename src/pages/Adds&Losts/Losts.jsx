@@ -12,13 +12,10 @@ const Losts = () => {
   const myLostPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
   useEffect(()=>{
-    if (token) {
       dispatch(getLost(token));
-    }
-    lostsData
-  },[token,dispatch,lostsData]);
+  },[token,dispatch,lostsData.length]);
   return (
-    <div className="losts">
+    <div className={`losts ${lostsData.length <=0 && 'fullHeight' }`}>
     {
       myLostPatchLoading? (
         <div className="loader-overlay">
@@ -31,9 +28,13 @@ const Losts = () => {
             <h1>The Lost people Who You Search For Them </h1>
           </div>
           {
-            lostsData && lostsData.map((lostData)=>(
-              <LostCard key={lostData.id} lost name={lostData.name} age={lostData.age} address={lostData.address} images={lostData.img} phoneNumber={lostData.phoneNumber} email={lostData.email} id={lostData.id} />
-            ))
+            lostsData.length >0 ? lostsData.map((lostData)=>(
+              <LostCard key={lostData.img} lost name={lostData.name} age={lostData.age} address={lostData.address} images={lostData.img} phoneNumber={lostData.phoneNumber} email={lostData.email} id={lostData.id} />
+            )):(
+              <div className="empty">
+                <h1>Sorry,the images of your lost didn't match yet  </h1>
+              </div> 
+            )
           }
         </Fragment>
       )
