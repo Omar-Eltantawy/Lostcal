@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { showErrorAlert } from "../alerts";
+import { showErrorAlert } from "../Components/alert&loader/alerts";
 
 
 const initialState={
@@ -17,7 +17,7 @@ export const forgetPassword=createAsyncThunk("user/forgetPassword",async({email}
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -30,7 +30,7 @@ export const resetSecretCode=createAsyncThunk("user/resetSecretCode",async({rese
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -53,7 +53,7 @@ const forgetSlice=createSlice({
         builder.addCase(forgetPassword.rejected,(state,action)=>{
             state.loading=false;
             state.forgetPasswordSuccess=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             showErrorAlert(state.error);
         })
         //////////////////////////////resetSecretCode//////////////////////////////////////////
@@ -68,7 +68,7 @@ const forgetSlice=createSlice({
         builder.addCase(resetSecretCode.rejected,(state,action)=>{
             state.loading=false;
             state.secretCodeSuccess=false;
-            state.error=action.error.message
+            state.error=action.payload;
             showErrorAlert(state.error)
         });
     }

@@ -3,7 +3,7 @@ import "./Signup.css"
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signupUser } from '../../redux/authSlice'
-import { CustomLoader } from '../../CustomLoader'
+import { CustomLoader } from '../../Components/alert&loader/CustomLoader'
 const Signup = () => {
     const token=useSelector((state)=>state.user.token);
     const loading=useSelector((state)=>state.user.loading);

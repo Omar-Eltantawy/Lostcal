@@ -9,10 +9,10 @@ import logo from "../../assets/images/WhatsApp Image 2023-10-07 at 11.03 1.png";
 import addImage from "../../assets/images/image-gallery 1.png";
 import emailImg from "../../assets/images/email 2.png";
 import phone from "../../assets/images/phone-call 2.png";
-import { showErrorAlert, showSuccessAlert } from "../../alerts";
+import { showErrorAlert, showSuccessAlert } from "../../Components/alert&loader/alerts";
 import { useDispatch, useSelector } from "react-redux";
 import { findTheLost } from "../../redux/lostSlice";
-import { CustomLoader } from "../../CustomLoader";
+import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
 
 function FindLost() {
     const token=useSelector((state)=>state.user.token);

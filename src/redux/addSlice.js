@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { showErrorAlert, showSuccessAlert } from "../alerts";
+import { showErrorAlert, showSuccessAlert } from "../Components/alert&loader/alerts";
 import axios from "axios";
 
 
@@ -22,7 +22,7 @@ export const addTheLost=createAsyncThunk("add/addTheLost",async ({formData,token
         });
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
         
@@ -41,7 +41,7 @@ export const getAdds=createAsyncThunk("add/getAdd",async(token,{rejectWithValue}
         // console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -57,7 +57,7 @@ export const deleteAdds=createAsyncThunk("add/deleteAdds",async({id,token},{reje
         })
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -82,8 +82,8 @@ const addSlice=createSlice({
         builder.addCase(addTheLost.rejected, (state, action) => {
             state.loading=false;
             state.success=false
-            state.error=action.error.message;
-            showErrorAlert("failed to Add A Lost's Person Data");
+            state.error=action.payload;
+            showErrorAlert(state.error);
         });
         ///////////////////////////////getAdds////////////////////////////////////////
         builder.addCase(getAdds.pending,(state)=>{
@@ -98,7 +98,7 @@ const addSlice=createSlice({
         builder.addCase(getAdds.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             state.data=[];
         });
         //////////////////////////////deleteAdds///////////////////////////////////////////
@@ -114,7 +114,7 @@ const addSlice=createSlice({
         builder.addCase(deleteAdds.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
         });
     }
 })

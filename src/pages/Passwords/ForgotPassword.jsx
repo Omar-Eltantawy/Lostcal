@@ -5,7 +5,7 @@ import mail from "../../assets/images/email 2.png";
 import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CustomLoader } from "../../CustomLoader";
+import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
 import { forgetPassword } from "../../redux/forgetSlice";
 
 const ForgotPassword = () => {

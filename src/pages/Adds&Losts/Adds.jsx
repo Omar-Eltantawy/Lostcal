@@ -4,7 +4,7 @@ import NewHeader from '../../Components/NewHeader/NewHeader';
 import LostCard from '../../Components/Cards/LostCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdds } from '../../redux/addSlice'
-import { CustomLoader } from "../../CustomLoader"
+import { CustomLoader } from "../../Components/alert&loader/CustomLoader"
 
 const Adds = () => {
   const token=useSelector((state)=>state.user.token);

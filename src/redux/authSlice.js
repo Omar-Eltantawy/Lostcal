@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { navigatePage, showErrorAlert, showSuccessAlert} from "../alerts";
+import {showErrorAlert, showSuccessAlert} from "../Components/alert&loader/alerts";
 const initialState={
     token: null,
     loading: false,
@@ -24,8 +24,8 @@ export const signupUser=createAsyncThunk("user/signupUser",async ({username,emai
         return res.data
     })
     .catch((error)=>{
-        console.log(rejectWithValue(error.response.data.errors))
-        return rejectWithValue(error.response.data.errors);
+        console.log(rejectWithValue(error.response.data.message))
+        return rejectWithValue(error.response.data.message);
     });
 });
 export const loginUser=createAsyncThunk("user/loginUser",async ({email,password},{rejectWithValue})=>{
@@ -42,8 +42,8 @@ export const loginUser=createAsyncThunk("user/loginUser",async ({email,password}
         console.log(res.data)
         return res.data
     }).catch((error)=>{
-        console.log(rejectWithValue(error.response.data.errors))
-        return rejectWithValue(error.response.data.errors);
+        console.log(rejectWithValue(error.response.data.message))
+        return rejectWithValue(error.response.data.message);
     });
 } );
 
@@ -58,8 +58,8 @@ export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejec
         // console.log(res.data);
         return res.data;
     }).catch((error)=>{
-        console.log(rejectWithValue(error.response.data.errors))
-        return rejectWithValue(error.response.data.errors);
+        console.log(rejectWithValue(error.response.data.message))
+        return rejectWithValue(error.response.data.message);
     })
 })
 
@@ -79,7 +79,7 @@ export const updatePassword=createAsyncThunk("user/updatePassword",async({passwo
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -96,7 +96,7 @@ export const resetPassword=createAsyncThunk("user/resetPassword",async({email,ne
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -126,8 +126,8 @@ const authSlice=createSlice({
         });
         builder.addCase(signupUser.rejected,(state,action)=>{
             state.loading=false;
-            state.error=action.error.message;
-            showErrorAlert(action.error.message);
+            state.error=action.payload;
+            showErrorAlert(state.error);
         });
 
         //////////////////////////login////////////////////////////
@@ -137,12 +137,12 @@ const authSlice=createSlice({
         builder.addCase(loginUser.fulfilled,(state,action)=>{
             state.loading=false;
             state.token=action.payload.token;
-            state.data=action.payload.data.user;
+            state.data=action.payload.data?.user;
             // showSuccessAlert('Login successful!');
         });
         builder.addCase(loginUser.rejected,(state,action)=>{
             state.loading=false;
-            state.error = action.payload ? action.payload.message : action.error.message;
+            state.error = action.payload;
             showErrorAlert(state.error);
         })
         /////////////////////////////getUserInfo///////////////////////////////
@@ -156,7 +156,7 @@ const authSlice=createSlice({
         });
         builder.addCase(getUserInfo.rejected,(state,action)=>{
             state.loading=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             state.data=[];
         })
         //////////////////////////////UpdatePassword///////////////////////////////////////////
@@ -174,7 +174,7 @@ const authSlice=createSlice({
         builder.addCase(updatePassword.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             showErrorAlert(state.error);
         });
         ////////////////////////////resetPassword/////////////////////////////////////////////////
@@ -191,7 +191,7 @@ const authSlice=createSlice({
         builder.addCase(resetPassword.rejected,(state,action)=>{
             state.loading = false;
             state.success = false;
-            state.error=action.error.message;
+            state.error=action.payload;
         });
     }
 })

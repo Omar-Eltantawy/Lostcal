@@ -7,8 +7,7 @@ import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetSuccess, updatePassword } from "../../redux/authSlice";
-import { CustomLoader } from "../../CustomLoader";
-import { showErrorAlert, showSuccessAlert } from "../../alerts";
+import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
 import { userToken } from "../../redux/selectors/selectors";
 
 const ChangePassword = () => {

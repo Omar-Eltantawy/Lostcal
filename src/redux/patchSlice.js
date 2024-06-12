@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { showErrorAlert, showSuccessAlert } from "../alerts";
+import { showErrorAlert, showSuccessAlert } from "../Components/alert&loader/alerts";
 
 const initialState={
     loading:false,
@@ -19,7 +19,7 @@ export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -36,7 +36,7 @@ export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,tok
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -55,7 +55,7 @@ export const updateUsername=createAsyncThunk("patch/updateUsername",async({usern
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -80,8 +80,8 @@ const patchSlice=createSlice({
         builder.addCase(updateMyLost.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
-            showErrorAlert("Failed to Update Your Lost Person's Data ");
+            state.error=action.payload;
+            showErrorAlert(state.error);
         });
         /////////////////////////////////updateAdd////////////////////////////////////////////
         builder.addCase(updateAdd.pending,(state)=>{
@@ -96,7 +96,7 @@ const patchSlice=createSlice({
         builder.addCase(updateAdd.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             showErrorAlert(state.error);
         });
         /////////////////////////////updateUsername/////////////////////////////////////////
@@ -112,7 +112,7 @@ const patchSlice=createSlice({
         builder.addCase(updateUsername.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             showErrorAlert(state.error);
         });
     },

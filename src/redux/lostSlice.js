@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { showErrorAlert, showSuccessAlert } from "../alerts";
+import { showErrorAlert, showSuccessAlert } from "../Components/alert&loader/alerts";
 
 const initialState={
     loading:false,
@@ -22,7 +22,7 @@ export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData
         console.log(response.data);
         return response.data;
         } catch (error) {
-            const errorMessages = error.response.data.errors;
+            const errorMessages = error.response.data.message;
             console.log(rejectWithValue(errorMessages))
             return rejectWithValue(errorMessages);
         }
@@ -42,7 +42,7 @@ export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSe
         // console.log(response.data.result);
         return response.data.result;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         // console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -59,7 +59,7 @@ export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValu
         // console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         // console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -76,7 +76,7 @@ export const deleteLost=createAsyncThunk("lost/deleteLost",async({id,token},{rej
         console.log(response.data);
         return response.data;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -101,8 +101,8 @@ const lostSlice=createSlice({
         builder.addCase(findTheLost.rejected,(state,action)=>{
             state.loading=false;
             state.success=false
-            state.error=action.error.message;
-            showErrorAlert("failed to Add Your Lost's Person Data ");
+            state.error=action.payload;
+            showErrorAlert(state.error);
         });
         ///////////////////////////////Search////////////////////////////////////
         builder.addCase(searchForLost.pending,(state)=>{
@@ -117,7 +117,7 @@ const lostSlice=createSlice({
         builder.addCase(searchForLost.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             state.data=[];
         });
         ///////////////////////////////getLost///////////////////////////////////
@@ -133,7 +133,7 @@ const lostSlice=createSlice({
         builder.addCase(getLost.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
             state.data=[];
         });
         ///////////////////////////////deleteLost////////////////////////////////////////
@@ -149,7 +149,7 @@ const lostSlice=createSlice({
         builder.addCase(deleteLost.rejected,(state,action)=>{
             state.loading=false;
             state.success=false;
-            state.error=action.error.message;
+            state.error=action.payload;
         })
         
     }

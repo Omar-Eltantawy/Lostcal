@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./UpdateUserData.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUsername } from '../../redux/patchSlice';
-import { showErrorAlert } from '../../alerts';
+import { showErrorAlert } from '../alert&loader/alerts';
 const UpdateUserData = ({type,name,email,id}) => {
   const token=useSelector((state)=>state.user.token);
   const [username,setUsername]=useState(name);

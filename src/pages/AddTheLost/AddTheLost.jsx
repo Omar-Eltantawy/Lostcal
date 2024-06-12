@@ -8,10 +8,10 @@ import dots from "../../assets/images/paint-splat-paint-splashes-design-use-abst
 import galaxy from "../../assets/images/undraw_Location_search_re_ttoj (1) 1.png"
 import emailImg from "../../assets/images/email 2.png"
 import phone from "../../assets/images/phone-call 2.png"
-import { showErrorAlert, showSuccessAlert } from '../../alerts'
+import { showErrorAlert, showSuccessAlert } from '../../Components/alert&loader/alerts'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTheLost } from '../../redux/addSlice'
-import { CustomLoader } from '../../CustomLoader'
+import { CustomLoader } from '../../Components/alert&loader/CustomLoader'
 function AddTheLost(){
     const token=useSelector((state)=>state.user.token);
     const loading=useSelector((state)=>state.add.loading);

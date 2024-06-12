@@ -18,7 +18,7 @@ export const allMatches=createAsyncThunk("matches/allMatches",async(token)=>{
         console.log(response.data.allMatches)
         return response.data.allMatches;
     }catch(error){
-        const errorMessages = error.response.data.errors;
+        const errorMessages = error.response.data.message;
         console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
@@ -37,7 +37,7 @@ const matchesSlice=createSlice({
         builder.addCase(allMatches.rejected,(state,action)=>{
             state.loading=false;
             state.data=[];
-            state.error=action.error.message;
+            state.error=action.payload;
         })
     }
 })

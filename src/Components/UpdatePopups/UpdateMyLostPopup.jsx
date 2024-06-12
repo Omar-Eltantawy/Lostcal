@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./UpdateMyLostPopup.css";
 import addImage from "../../assets/images/image-gallery 1.png";
 import { useDispatch, useSelector } from 'react-redux';
