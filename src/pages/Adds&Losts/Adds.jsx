@@ -13,8 +13,6 @@ const Adds = () => {
   const addsData=useSelector((state)=>state.add.data);
   useEffect(()=>{
       dispatch(getAdds(token))
-
-    // console.log(addsData)
   },[token,dispatch,addsData.length]);
   return (
     <div className={`adds ${addsData.length <=0 && 'fullHeight' }`}>

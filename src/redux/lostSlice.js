@@ -19,11 +19,9 @@ export const findTheLost = createAsyncThunk("lost/findTheLost",async ({ formData
                     }
                 }
         );
-        console.log(response.data);
         return response.data;
         } catch (error) {
             const errorMessages = error.response.data.message;
-            console.log(rejectWithValue(errorMessages))
             return rejectWithValue(errorMessages);
         }
     }
@@ -38,12 +36,9 @@ export const searchForLost=createAsyncThunk("lost/searchForLost",async({nameToSe
                 Authorization:`Bearer ${token}`,
             }
         });
-        
-        // console.log(response.data.result);
         return response.data.result;
     }catch(error){
         const errorMessages = error.response.data.message;
-        // console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
@@ -56,11 +51,9 @@ export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValu
                 Authorization:`Bearer ${token}`,
             }
         });
-        // console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        // console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
@@ -73,11 +66,9 @@ export const deleteLost=createAsyncThunk("lost/deleteLost",async({id,token},{rej
                 Authorization:`Bearer ${token}`,
             }
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })

@@ -24,7 +24,6 @@ export const signupUser=createAsyncThunk("user/signupUser",async ({username,emai
         return res.data
     })
     .catch((error)=>{
-        console.log(rejectWithValue(error.response.data.message))
         return rejectWithValue(error.response.data.message);
     });
 });
@@ -39,10 +38,8 @@ export const loginUser=createAsyncThunk("user/loginUser",async ({email,password}
             "Content-Type":"application/json"
         },
     }).then((res)=>{
-        console.log(res.data)
         return res.data
     }).catch((error)=>{
-        console.log(rejectWithValue(error.response.data.message))
         return rejectWithValue(error.response.data.message);
     });
 } );
@@ -55,10 +52,8 @@ export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejec
             Authorization:`Bearer ${token}`,
         },
     }).then((res)=>{
-        // console.log(res.data);
         return res.data;
     }).catch((error)=>{
-        console.log(rejectWithValue(error.response.data.message))
         return rejectWithValue(error.response.data.message);
     })
 })
@@ -76,11 +71,9 @@ export const updatePassword=createAsyncThunk("user/updatePassword",async({passwo
                 Authorization : `Bearer ${token}`
             }
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
@@ -93,11 +86,9 @@ export const resetPassword=createAsyncThunk("user/resetPassword",async({email,ne
             newPassword,
             passwordConfirm
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })

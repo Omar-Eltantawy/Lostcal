@@ -18,14 +18,10 @@ const Login = () => {
         dispatch(loginUser({email,password}));
         setEmail("");
         setPassword("");
-        if(loading === true ){
-            console.log(token)
-        }
     }
     useEffect(() => {
         if (token) {
             navigate(redirectPath,{replace:true});
-            console.log(token)
         }
     }, [token, navigate]);
 

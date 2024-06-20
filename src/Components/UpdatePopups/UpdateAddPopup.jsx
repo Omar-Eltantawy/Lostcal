@@ -33,9 +33,7 @@ const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
     };
     const handleImgChange=(e)=>{
         const file = e.target.files[0];
-        console.log(file); // Check if the file is logged correctly
         setUpdatedImg(file);
-        console.log("after"+file); // Check if the file is logged correctly
     }
     const handleSubmit=()=>{
         if( !updatedName|| !updatedAddress || !updatedEmail || !updatedPhoneNumber || !updatedPhoneNumber ){

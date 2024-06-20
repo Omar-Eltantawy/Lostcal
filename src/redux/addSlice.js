@@ -23,7 +23,6 @@ export const addTheLost=createAsyncThunk("add/addTheLost",async ({formData,token
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
         
     }
@@ -38,11 +37,9 @@ export const getAdds=createAsyncThunk("add/getAdd",async(token,{rejectWithValue}
                 Authorization:`Bearer ${token}`,
             },
         })
-        // console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 });
@@ -58,7 +55,6 @@ export const deleteAdds=createAsyncThunk("add/deleteAdds",async({id,token},{reje
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })

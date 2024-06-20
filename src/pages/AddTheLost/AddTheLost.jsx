@@ -47,9 +47,6 @@ function AddTheLost(){
         setAddress("");
         setEmail("");
         setPhoneNumber("");
-        console.log("form data",Object.fromEntries(formData))
-        console.log(formData)
-        console.log(token)
     }
 
   return (

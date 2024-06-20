@@ -27,13 +27,10 @@ const ChangePassword = () => {
     }
   },[success,navigate])
   const handleSubmit=()=>{
-    console.log(token)
     dispatch(updatePassword({passwordCurrent,password,passwordConfirm,token}));
     setPasswordCurrent("");
     setPassword("");
     setPasswordConfirm("");
-    console.log(error)
-    console.log(success)
   }
   return (
     <div>

@@ -14,11 +14,9 @@ export const forgetPassword=createAsyncThunk("user/forgetPassword",async({email}
     try{
         // https://lostcal.onrender.com/api/user/forgetPassword
         const response = await axios.post("http://localhost:8000/api/user/forgetPassword",{email});
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
@@ -27,11 +25,9 @@ export const resetSecretCode=createAsyncThunk("user/resetSecretCode",async({rese
     try{
         // https://lostcal.onrender.com/api/user/verifyResetCode
         const response =await axios.post("http://localhost:8000/api/user/verifyResetCode",{resetCode});
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })

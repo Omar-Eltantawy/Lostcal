@@ -16,10 +16,12 @@ const User = () => {
   const token=useSelector((state)=>state.user.token);
   // const userData=useSelector((state)=>state.user.data);  
   const userData=useSelector(userDataSelector);  
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();
+
   useEffect(()=>{
       dispatch(getUserInfo(token));
-  },[dispatch,token,userData.length])
+  },[dispatch,token,userData])
+
   return (
     <div className={styles.user}>
       <NewHeader active="user" />

@@ -3,10 +3,10 @@ import "./UpdateUserData.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUsername } from '../../redux/patchSlice';
 import { showErrorAlert } from '../alert&loader/alerts';
+import { getUserInfo } from '../../redux/authSlice';
 const UpdateUserData = ({type,name,email,id}) => {
   const token=useSelector((state)=>state.user.token);
   const [username,setUsername]=useState(name);
-  // const [updatedEmail,setUpdatedEmail]=useState(email);
   const dispatch=useDispatch()
   const handleInputChange=(e)=>{
       setUsername(e.target.value)
@@ -16,8 +16,8 @@ const UpdateUserData = ({type,name,email,id}) => {
       showErrorAlert("Please write a username");
       return
     }
-    dispatch(updateUsername({username,token}))
-    console.log(token)
+    dispatch(updateUsername({username,token}));
+    dispatch(getUserInfo(token));
   }
   return (
     <div className='update-user-data'>

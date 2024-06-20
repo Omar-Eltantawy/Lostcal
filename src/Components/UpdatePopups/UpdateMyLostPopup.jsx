@@ -19,9 +19,6 @@ const UpdateMyLostPopup = ({ name, age, address, phoneNumber, images, email, id 
         convertImagesToFiles(originalImages);
     }, [originalImages]);
 
-    // useMemo(()=>{
-    //     convertImagesToFiles(images)
-    // },[images])
 
     const convertImagesToFiles = async (imageUrls) => {
         try {
@@ -44,54 +41,50 @@ const UpdateMyLostPopup = ({ name, age, address, phoneNumber, images, email, id 
     };
 
 
-    const handleImageChange = (e) => {
-        const files = e.target.files;
-        const newImages = [...updatedImages];
-        for (let i = 0; i < files.length; i++) {
-            newImages.push(files[i]);
-        }
-        console.log(newImages)
-        setUpdatedImages(newImages);
-        console.log(newImages)
-    };
+const handleImageChange = (e) => {
+    const files = e.target.files;
+    const newImages = [...updatedImages];
+    for (let i = 0; i < files.length; i++) {
+        newImages.push(files[i]);
+    }
+    setUpdatedImages(newImages);
+    
+};
 
-    const handleRemoveImage = (index) => {
-        const newImages = [...updatedImages];
-        newImages.splice(index, 1);
-        setUpdatedImages(newImages);
-    };
+const handleRemoveImage = (index) => {
+    const newImages = [...updatedImages];
+    newImages.splice(index, 1);
+    setUpdatedImages(newImages);
+};
 
-    const handleSubmit = async () => {
-        if (updatedImages.length < 3 || updatedImages.length > 5) {
-            showErrorAlert("Please add images between 3 to 5 images");
-            return;
-        }
-        if (!name || !age || !address || !email || !phoneNumber) {
-            showErrorAlert("Please fill out all the fields");
-            return;
-        }
-        setUpdatedImages(originalImages)
-        const formData = new FormData();
-        formData.append("name", updatedName);
-        formData.append("age", updatedAge);
-        formData.append("address", updatedAddress);
-        formData.append("email", updatedEmail);
-        formData.append("phoneNumber", updatedPhoneNumber);
-        // convertImagesToFiles(images)
-        // convertImagesToFiles(updatedImages)
-        if (updatedImages.length === 0) {
-            images.forEach((image) => {
-                formData.append(`img`, image);
-            });
-        } else {
-            updatedImages.forEach((image) => {
-                formData.append(`img`, image);
-            });
-        }
-        dispatch(updateMyLost({ formData, id, token }));
-        console.log(updatedImages)
-        console.log("formData", Object.fromEntries(formData));
-    };
+const handleSubmit = async () => {
+    if (updatedImages.length < 3 || updatedImages.length > 5) {
+        showErrorAlert("Please add images between 3 to 5 images");
+        return;
+    }
+    if (!name || !age || !address || !email || !phoneNumber) {
+        showErrorAlert("Please fill out all the fields");
+        return;
+    }
+    setUpdatedImages(originalImages)
+    const formData = new FormData();
+    formData.append("name", updatedName);
+    formData.append("age", updatedAge);
+    formData.append("address", updatedAddress);
+    formData.append("email", updatedEmail);
+    formData.append("phoneNumber", updatedPhoneNumber);
+    
+    if (updatedImages.length === 0) {
+        images.forEach((image) => {
+            formData.append(`img`, image);
+        });
+    } else {
+        updatedImages.forEach((image) => {
+            formData.append(`img`, image);
+        });
+    }
+    dispatch(updateMyLost({ formData, id, token }));
+};
 
     return (
         <div className='update-popup'>

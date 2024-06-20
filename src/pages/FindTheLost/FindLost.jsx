@@ -35,7 +35,6 @@ function FindLost() {
     };
     
     const handleSubmit=()=>{
-      console.log(token);
       if (!token) {
         showErrorAlert("You can't add lost person without login ");
         return
@@ -56,7 +55,6 @@ function FindLost() {
         formData.append('email', email);
         formData.append('phoneNumber',phoneNumber);
         images.forEach((image, index) => {
-          console.log(image)
           formData.append(`img`, image);
         });
         dispatch(findTheLost({formData,token}));
@@ -66,8 +64,6 @@ function FindLost() {
         setAddress("");
         setEmail("");
         setPhoneNumber("");
-        console.log("formData", Object.fromEntries(formData))
-        console.log(formData);   
     }
     }
   return (

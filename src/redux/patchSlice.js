@@ -16,11 +16,9 @@ export const updateMyLost=createAsyncThunk("patch/updateMyLost",async({formData,
                 Authorization:`Bearer ${token}`,
             }
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 });
@@ -33,11 +31,9 @@ export const updateAdd=createAsyncThunk("patch/updateAdd",async({formData,id,tok
                 Authorization:`Bearer ${token}`,
             }
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 });
@@ -52,11 +48,9 @@ export const updateUsername=createAsyncThunk("patch/updateUsername",async({usern
                 Authorization : `Bearer ${token}`
             }
         });
-        console.log(response.data);
         return response.data;
     }catch(error){
         const errorMessages = error.response.data.message;
-        console.log(rejectWithValue(errorMessages))
         return rejectWithValue(errorMessages);
     }
 })
