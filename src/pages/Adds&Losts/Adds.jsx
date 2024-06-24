@@ -10,12 +10,12 @@ const Adds = () => {
   const token=useSelector((state)=>state.user.token);
   const  addPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
-  const addsData=useSelector((state)=>state.add.data);
+  const addsData=useSelector((state)=>state.add.data.result);
   useEffect(()=>{
       dispatch(getAdds(token))
-  },[token,dispatch,addsData.length]);
+  },[token,dispatch,addsData?.length]);
   return (
-    <div className={`adds ${addsData.length <=0 && 'fullHeight' }`}>
+    <div className={`adds ${addsData?.length <=0 && 'fullHeight' }`}>
     {
       addPatchLoading?(
         <div className="loader-overlay">
@@ -28,7 +28,7 @@ const Adds = () => {
             <h1>The Lost People Who You Found them</h1>
           </div>
           {
-            addsData.length > 0  ? addsData.map((addData,i)=>(
+            addsData?.length > 0  ? addsData.map((addData,i)=>(
               <LostCard key={i} add name={addData.name} address={addData.address} img={addData.img} phoneNumber={addData.phoneNumber} email={addData.email} id={addData.id} />
             )):(
               <div className="empty">

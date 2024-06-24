@@ -13,15 +13,15 @@ const Matches = () => {
   const dispatch=useDispatch();
   useEffect(() => {
       dispatch(allMatches(token));
-  }, [dispatch, token,matchesData.length]);
+  }, [dispatch, token,matchesData?.length]);
   return (
-    <div className={`matches ${matchesData.length <=0 && 'fullHeight' }`}>
+    <div className={`matches ${matchesData?.length <=0 && 'fullHeight' }`}>
         <NewHeader active="user"/>
         <div className='heading'>
             <h1>If the images match anyone, you will find them here </h1>
         </div>
         {
-          matchesData.length > 0  ? matchesData.map((match,i)=>(
+          matchesData?.length > 0  ? matchesData.map((match,i)=>(
             <MatchesCard key={i} name={match.name} age={match.age ? match.age : null} address={match.address} images={match.img} phoneNumber={match.phoneNumber} email={match.email}/>
           ))
           :(

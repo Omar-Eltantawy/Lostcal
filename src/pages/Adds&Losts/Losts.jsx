@@ -8,14 +8,14 @@ import { CustomLoader } from "../../Components/alert&loader/CustomLoader"
 
 const Losts = () => {
   const token=useSelector((state)=>state.user.token);
-  const lostsData=useSelector((state)=>state.lost.data);
+  const lostsData=useSelector((state)=>state.lost.data.result);
   const myLostPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
   useEffect(()=>{
       dispatch(getLost(token));
-  },[token,dispatch,lostsData.length]);
+  },[token,dispatch,lostsData?.length]);
   return (
-    <div className={`losts ${lostsData.length <=0 && 'fullHeight' }`}>
+    <div className={`losts ${lostsData?.length <=0 && 'fullHeight' }`}>
     {
       myLostPatchLoading? (
         <div className="loader-overlay">
@@ -28,7 +28,7 @@ const Losts = () => {
             <h1>The Lost people Who You Search For Them </h1>
           </div>
           {
-            lostsData.length >0 ? lostsData.map((lostData)=>(
+            lostsData?.length >0 ? lostsData.map((lostData)=>(
               <LostCard key={lostData.img} lost name={lostData.name} age={lostData.age} address={lostData.address} images={lostData.img} phoneNumber={lostData.phoneNumber} email={lostData.email} id={lostData.id} />
             )):(
               <div className="empty">

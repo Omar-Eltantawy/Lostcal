@@ -14,10 +14,20 @@ import ResetPassword from "../pages/Passwords/ResetPassword"
 import SecretCode from '../pages/Passwords/SecretCode'
 import Matches from '../pages/Matches/Matches'
 import RequireAuth from './RequireAuth'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getUserInfo } from '../redux/authSlice'
 
 
 
 const AppRouter = () => {
+  const dispatch =useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        dispatch(getUserInfo(token));
+    }
+}, [dispatch]);
   return (
       <div>
         <Routes>

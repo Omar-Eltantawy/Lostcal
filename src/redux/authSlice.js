@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import {showErrorAlert, showSuccessAlert} from "../Components/alert&loader/alerts";
+
+const tokenFromLocalStorage=localStorage.getItem('token');
 const initialState={
-    token: null,
+    token: tokenFromLocalStorage || null,
     loading: false,
     success:false,
     error: null,
@@ -58,6 +60,18 @@ export const getUserInfo=createAsyncThunk("user/getUserInfo",async (token,{rejec
     })
 })
 
+export const logoutUser=createAsyncThunk("user/logoutUser",async (token,{rejectWithValue})=>{
+    //https://lostcal.onrender.com/api/user/logout
+    return await axios.get("http://localhost:8000/api/user/logout",{
+        headers:{
+            Authorization:`Bearer ${token}`,
+        },
+    }).then((res)=>{
+        return res.data;
+    }).catch((error)=>{
+        return rejectWithValue(error.response.data.message);
+    })
+})
 
 export const updatePassword=createAsyncThunk("user/updatePassword",async({passwordCurrent,password,passwordConfirm,token},{rejectWithValue})=>{
     try{
@@ -113,6 +127,7 @@ const authSlice=createSlice({
             state.loading=false;
             state.token=action.payload.token;
             state.data=action.payload.data
+            localStorage.setItem('token',action.payload.token)
             // showSuccessAlert('Signup successful!');
         });
         builder.addCase(signupUser.rejected,(state,action)=>{
@@ -129,6 +144,7 @@ const authSlice=createSlice({
             state.loading=false;
             state.token=action.payload.token;
             state.data=action.payload.data?.user;
+            localStorage.setItem('token',action.payload.token)
             // showSuccessAlert('Login successful!');
         });
         builder.addCase(loginUser.rejected,(state,action)=>{
@@ -161,6 +177,7 @@ const authSlice=createSlice({
             state.data=action.payload.data;
             state.error=null;
             showSuccessAlert("Your Lost Person's data Updated Successfully ");
+            localStorage.setItem('token',action.payload.token)
         });
         builder.addCase(updatePassword.rejected,(state,action)=>{
             state.loading=false;
@@ -178,10 +195,28 @@ const authSlice=createSlice({
             state.token=action.payload.token;
             state.data=action.payload.data;
             state.error=null;
+            localStorage.setItem('token',action.payload.token)
         });
         builder.addCase(resetPassword.rejected,(state,action)=>{
             state.loading = false;
             state.success = false;
+            state.error=action.payload;
+        });
+        ////////////////////////////logout///////////////////////////////////
+        builder.addCase(logoutUser.pending,(state)=>{
+            state.loading=true;
+        });
+        builder.addCase(logoutUser.fulfilled,(state)=>{
+            state.loading=false;
+            state.success=true;
+            state.data=[];
+            state.token=null;
+            state.error=null;
+            showSuccessAlert("logged out successfully");
+            localStorage.removeItem('token');
+        });
+        builder.addCase(logoutUser.rejected,(state,action)=>{
+            state.loading=false;
             state.error=action.payload;
         });
     }
