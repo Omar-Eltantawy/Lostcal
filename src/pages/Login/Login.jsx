@@ -2,7 +2,7 @@ import "./Login.css"
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../../redux/authSlice'
+import { loginUser, resetSuccess } from '../../redux/authSlice'
 import {CustomLoader} from '../../Components/alert&loader/CustomLoader'
 const Login = () => {
     const token=useSelector((state)=>state.user.token);
@@ -18,6 +18,7 @@ const Login = () => {
         dispatch(loginUser({email,password}));
         setEmail("");
         setPassword("");
+        dispatch(resetSuccess());
     }
     useEffect(() => {
         if (token) {

@@ -15,7 +15,7 @@ const Adds = () => {
       dispatch(getAdds(token))
   },[token,dispatch,addsData?.length]);
   return (
-    <div className={`adds ${addsData?.length <=0 && 'fullHeight' }`}>
+    <div className={`adds ${addsData?.length <=0 || !addsData && 'fullHeight' }`}>
     {
       addPatchLoading?(
         <div className="loader-overlay">
@@ -32,7 +32,7 @@ const Adds = () => {
               <LostCard key={i} add name={addData.name} address={addData.address} img={addData.img} phoneNumber={addData.phoneNumber} email={addData.email} id={addData.id} />
             )):(
               <div className="empty">
-                <h1>Sorry,the images of your lost didn't match yet  </h1>
+                <h1>Sorry, you didn't add any lost people yet </h1>
               </div> 
             )
           }

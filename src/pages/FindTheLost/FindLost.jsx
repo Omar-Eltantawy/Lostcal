@@ -13,10 +13,13 @@ import { showErrorAlert, showSuccessAlert } from "../../Components/alert&loader/
 import { useDispatch, useSelector } from "react-redux";
 import { findTheLost } from "../../redux/lostSlice";
 import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
+import { useNavigate } from "react-router-dom";
 
 function FindLost() {
     const token=useSelector((state)=>state.user.token);
     const loading=useSelector((state)=>state.lost.loading);
+    const success=useSelector((state)=>state.lost.success);
+    const navigate=useNavigate();
     const dispatch=useDispatch();
     const [images,setImages]=useState([]);
     const [name,setName]=useState('');
@@ -66,6 +69,11 @@ function FindLost() {
         setPhoneNumber("");
     }
     }
+    useEffect(()=>{
+      if(success){
+        navigate("/");
+      }
+    },[success,navigate])
   return (
     <div>
     {

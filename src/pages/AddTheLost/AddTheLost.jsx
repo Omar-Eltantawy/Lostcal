@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./AddTheLost.css"
 import addImg from "../../assets/images/image-gallery 1.png"
 import nameImg from "../../assets/images/profile 3.png"
@@ -12,9 +12,12 @@ import { showErrorAlert, showSuccessAlert } from '../../Components/alert&loader/
 import { useDispatch, useSelector } from 'react-redux'
 import { addTheLost } from '../../redux/addSlice'
 import { CustomLoader } from '../../Components/alert&loader/CustomLoader'
+import { useNavigate } from 'react-router-dom'
 function AddTheLost(){
     const token=useSelector((state)=>state.user.token);
     const loading=useSelector((state)=>state.add.loading);
+    const success=useSelector((state)=>state.add.success);
+    const navigate =useNavigate();
     const [img,setImg]=useState('');
     const [name,setName]=useState('');
     const [address,setAddress]=useState('');
@@ -48,6 +51,11 @@ function AddTheLost(){
         setEmail("");
         setPhoneNumber("");
     }
+    useEffect(()=>{
+        if(success){
+            navigate("/");
+        }
+    },[success,navigate])
 
   return (
     <div>
