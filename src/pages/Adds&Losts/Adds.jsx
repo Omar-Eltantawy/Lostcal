@@ -10,12 +10,12 @@ const Adds = () => {
   const token=useSelector((state)=>state.user.token);
   const  addPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
-  const addsData=useSelector((state)=>state.add.data.result);
+  const addsData=useSelector((state)=>state.add.data);
   useEffect(()=>{
       dispatch(getAdds(token))
   },[token,dispatch,addsData?.length]);
   return (
-    <div className={`adds ${addsData?.length <=0 || !addsData && 'fullHeight' }`}>
+    <div className={`adds ${(addsData?.length <=0 || !addsData) && 'fullHeight' }`}>
     {
       addPatchLoading?(
         <div className="loader-overlay">

@@ -51,7 +51,7 @@ export const getLost=createAsyncThunk("lost/getLost",async(token,{rejectWithValu
                 Authorization:`Bearer ${token}`,
             }
         });
-        return response.data;
+        return response.data.result;
     }catch(error){
         const errorMessages = error.response.data.message;
         return rejectWithValue(errorMessages);
@@ -76,7 +76,11 @@ export const deleteLost=createAsyncThunk("lost/deleteLost",async({id,token},{rej
 const lostSlice=createSlice({
     name:"lost",
     initialState,
-    reducers:{},
+    reducers:{
+        resetLostSuccess:(state)=>{
+            state.success=false;
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(findTheLost.pending,(state)=>{
             state.loading=true;
@@ -120,6 +124,7 @@ const lostSlice=createSlice({
             state.success=true;
             state.error=null;
             state.data=action.payload;
+            //  state.data = Array.isArray(action.payload) ? action.payload : []; 
         });
         builder.addCase(getLost.rejected,(state,action)=>{
             state.loading=false;
@@ -145,5 +150,5 @@ const lostSlice=createSlice({
         
     }
 });
-
+export const {resetLostSuccess} =lostSlice.actions;
 export default lostSlice.reducer;

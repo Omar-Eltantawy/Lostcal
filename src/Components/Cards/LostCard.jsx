@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import "./LostCard.css"
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteAdds } from '../../redux/addSlice';
-import { deleteLost } from '../../redux/lostSlice';
+import { deleteAdds, getAdds } from '../../redux/addSlice';
+import { deleteLost, getLost } from '../../redux/lostSlice';
 import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import UpdateAddPopup from '../../Components/UpdatePopups/UpdateAddPopup';
@@ -17,12 +17,22 @@ const LostCard = ({lost,add,search,name,age,address,phoneNumber,images,email,img
   const addLoading=useSelector((state)=>state.add.loading);
   const lostLoading=useSelector((state)=>state.lost.loading);
   const dispatch=useDispatch();
-  const deleteTheAdd=()=>{
-    dispatch(deleteAdds({id,token}));
+  const deleteTheAdd=async()=>{
+    try {
+      await dispatch(deleteAdds({ id, token })).unwrap();
+      dispatch(getAdds(token));
+    } catch (error) {
+      console.error('Error deleting add:', error);
+    }
     id="";
   }
-  const deleteTheLost=()=>{
-    dispatch(deleteLost({id,token}));
+  const deleteTheLost=async()=>{
+    try {
+      await dispatch(deleteLost({ id, token })).unwrap();
+      dispatch(getLost(token));
+    } catch (error) {
+      console.error('Error deleting lost:', error);
+    }
   }
   const [currentIndex, setCurrentIndex] = useState(0);
   const nextSlide = () => {

@@ -11,13 +11,17 @@ const UpdateUserData = ({type,name,email,id}) => {
   const handleInputChange=(e)=>{
       setUsername(e.target.value)
   }
-  const handleUpdateUsername=()=>{
+  const handleUpdateUsername=async()=>{
     if( ! username ){
       showErrorAlert("Please write a username");
       return
     }
-    dispatch(updateUsername({username,token}));
-    dispatch(getUserInfo(token));
+    try{
+      await dispatch(updateUsername({username,token})).unwrap()
+      dispatch(getUserInfo(token));
+    }catch(error){
+      console.error('Error updating lost person:', error);
+    }
   }
   return (
     <div className='update-user-data'>

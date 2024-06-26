@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import addImage from "../../assets/images/image-gallery 1.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAdd } from '../../redux/patchSlice';
+import { getUserInfo } from '../../redux/authSlice';
+import { getAdds } from '../../redux/addSlice';
 const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
     const token=useSelector((state)=>state.user.token);
     const [updatedName,setUpdatedName]=useState(name)
@@ -26,7 +28,6 @@ const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
             console.error('Error fetching image:', error);
         }
     };
-    convertImgToFile(img)
     const handleRemoveImg=()=>{
         setUpdatedImg(null);
         
@@ -35,7 +36,7 @@ const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
         const file = e.target.files[0];
         setUpdatedImg(file);
     }
-    const handleSubmit=()=>{
+    const handleSubmit=async()=>{
         if( !updatedName|| !updatedAddress || !updatedEmail || !updatedPhoneNumber || !updatedPhoneNumber ){
             showErrorAlert("Please fill out all the fields");
             return;
@@ -48,7 +49,14 @@ const UpdateAddPopup = ({name,address,email,phoneNumber,img,id}) => {
         formData.append("phoneNumber", updatedPhoneNumber);
         formData.append("img", updatedImg);
 
-        dispatch(updateAdd({ formData, token, id }));
+        // dispatch(updateAdd({ formData, token, id }));
+
+        try {
+            await dispatch(updateAdd({ formData, id, token })).unwrap();
+            dispatch(getAdds(token));
+        } catch (error) {
+            console.error('Error updating lost person:', error);
+        }
             
     }
   return (

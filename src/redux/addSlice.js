@@ -37,7 +37,7 @@ export const getAdds=createAsyncThunk("add/getAdd",async(token,{rejectWithValue}
                 Authorization:`Bearer ${token}`,
             },
         })
-        return response.data;
+        return response.data.result;
     }catch(error){
         const errorMessages = error.response.data.message;
         return rejectWithValue(errorMessages);
@@ -62,7 +62,11 @@ export const deleteAdds=createAsyncThunk("add/deleteAdds",async({id,token},{reje
 const addSlice=createSlice({
     name:"add",
     initialState,
-    reducers:{},
+    reducers:{
+        resetAddSuccess:(state)=>{
+            state.success=false;
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(addTheLost.pending, (state) => {
             state.loading = true;
@@ -114,4 +118,5 @@ const addSlice=createSlice({
         });
     }
 })
+export const {resetAddSuccess} = addSlice.actions;
 export default addSlice.reducer;

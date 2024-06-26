@@ -10,7 +10,7 @@ import emailImg from "../../assets/images/email 2.png"
 import phone from "../../assets/images/phone-call 2.png"
 import { showErrorAlert, showSuccessAlert } from '../../Components/alert&loader/alerts'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTheLost } from '../../redux/addSlice'
+import { addTheLost, resetAddSuccess } from '../../redux/addSlice'
 import { CustomLoader } from '../../Components/alert&loader/CustomLoader'
 import { useNavigate } from 'react-router-dom'
 function AddTheLost(){
@@ -54,6 +54,7 @@ function AddTheLost(){
     useEffect(()=>{
         if(success){
             navigate("/");
+            dispatch(resetAddSuccess());
         }
     },[success,navigate])
 

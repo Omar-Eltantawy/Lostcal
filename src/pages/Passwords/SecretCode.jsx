@@ -5,7 +5,7 @@ import styles from "./ForgotPassword.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
-import { resetSecretCode } from "../../redux/forgetSlice";
+import { resetSecretCode, restSecretCodeSuccess } from "../../redux/forgetSlice";
 
 const SecretCode = () => {
   const [resetCode,setResetCode]=useState("");
@@ -18,7 +18,8 @@ const SecretCode = () => {
   }
   useEffect(()=>{
     if(loading === false && success === true){
-        navigate("/reset-password")
+        navigate("/reset-password");
+        dispatch(restSecretCodeSuccess());
       }
   },[loading,success,navigate])
   return (

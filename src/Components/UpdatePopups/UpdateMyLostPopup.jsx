@@ -3,6 +3,8 @@ import "./UpdateMyLostPopup.css";
 import addImage from "../../assets/images/image-gallery 1.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateMyLost } from '../../redux/patchSlice';
+import { getLost } from '../../redux/lostSlice';
+import { showErrorAlert } from '../alert&loader/alerts';
 
 const UpdateMyLostPopup = ({ name, age, address, phoneNumber, images, email, id }) => {
     const token = useSelector((state) => state.user.token);
@@ -83,7 +85,15 @@ const handleSubmit = async () => {
             formData.append(`img`, image);
         });
     }
-    dispatch(updateMyLost({ formData, id, token }));
+    // dispatch(updateMyLost({ formData, id, token }))
+
+    try {
+        await dispatch(updateMyLost({ formData, id, token })).unwrap();
+        dispatch(getLost(token));
+    } catch (error) {
+        console.error('Error updating lost person:', error);
+    }
+
 };
 
     return (

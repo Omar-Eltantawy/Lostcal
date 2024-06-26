@@ -20,7 +20,7 @@ const User = () => {
 
   useEffect(()=>{
       dispatch(getUserInfo(token));
-  },[dispatch,token,userData])
+  },[dispatch,token,userData?.length])
 
   return (
     <div className={styles.user}>

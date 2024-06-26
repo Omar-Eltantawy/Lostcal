@@ -11,7 +11,7 @@ import emailImg from "../../assets/images/email 2.png";
 import phone from "../../assets/images/phone-call 2.png";
 import { showErrorAlert, showSuccessAlert } from "../../Components/alert&loader/alerts";
 import { useDispatch, useSelector } from "react-redux";
-import { findTheLost } from "../../redux/lostSlice";
+import { findTheLost, resetLostSuccess } from "../../redux/lostSlice";
 import { CustomLoader } from "../../Components/alert&loader/CustomLoader";
 import { useNavigate } from "react-router-dom";
 
@@ -72,6 +72,7 @@ function FindLost() {
     useEffect(()=>{
       if(success){
         navigate("/");
+        dispatch(resetLostSuccess());
       }
     },[success,navigate])
   return (

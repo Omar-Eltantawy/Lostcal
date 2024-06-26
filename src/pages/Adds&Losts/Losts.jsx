@@ -8,14 +8,15 @@ import { CustomLoader } from "../../Components/alert&loader/CustomLoader"
 
 const Losts = () => {
   const token=useSelector((state)=>state.user.token);
-  const lostsData=useSelector((state)=>state.lost.data.result);
+  const lostsData=useSelector((state)=>state.lost.data);
   const myLostPatchLoading=useSelector((state)=>state.patch.loading);
   const dispatch=useDispatch();
   useEffect(()=>{
       dispatch(getLost(token));
+      console.log(lostsData)
   },[token,dispatch,lostsData?.length]);
   return (
-    <div className={`losts ${lostsData?.length <=0 || !lostsData && 'fullHeight' }`}>
+    <div className={`losts ${(lostsData?.length <=0 || !lostsData) && 'fullHeight' }`}>
     {
       myLostPatchLoading? (
         <div className="loader-overlay">

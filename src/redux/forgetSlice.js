@@ -35,7 +35,14 @@ export const resetSecretCode=createAsyncThunk("user/resetSecretCode",async({rese
 const forgetSlice=createSlice({
     name:"forget",
     initialState,
-    reducers:{},
+    reducers:{
+        resetForgetSuccess:(state)=>{
+            state.forgetPasswordSuccess=false;
+        },
+        restSecretCodeSuccess:(state)=>{
+            state.secretCodeSuccess=false;
+        }
+    },
     extraReducers:(builder)=>{
         ////////////////////////////forgetPassword///////////////////////////////////////
         builder.addCase(forgetPassword.pending,(state)=>{
@@ -69,5 +76,5 @@ const forgetSlice=createSlice({
         });
     }
 });
-
+export const {resetForgetSuccess,restSecretCodeSuccess}= forgetSlice.actions
 export default forgetSlice.reducer
